@@ -1,0 +1,83 @@
+---
+- name: proaluno
+  hosts: proaluno
+  become: yes
+
+  #### variáveis globais ####
+  vars:
+    dc: "143.107.72.181"
+
+  tasks:
+
+  - name: update
+    apt:
+      update_cache: yes
+
+  - name: upgrade
+    apt:
+      upgrade: dist
+
+  - name: Remove useless packages from the cache
+    apt:
+      autoclean: yes
+      autoremove: yes
+
+  - name: Instalação de pacotes básicos
+    apt: 
+      name: "{{ packages }}" 
+      state: latest 
+      update_cache: yes
+    vars:
+      packages:
+        - terminator
+        - vlc
+        - gimp
+        - inkscape
+        - audacity
+        - r-base
+        - chromium
+
+    #### roles usadas da comunidade ####
+    - name: oefenweb.rstudio
+      include_role:
+        name: oefenweb.rstudio
+      vars:
+        rstudio_version: "xenial-1.1.463"
+
+    - name: adriagalin.timezone
+      include_role:
+        name: adriagalin.timezone
+      vars:
+        ag_timezone: 'America/Sao_Paulo'
+
+    - name: infOpen.locales
+      include_role:
+        name: infOpen.locales
+      vars:
+        locales_to_configure:
+          - name: 'en_US.UTF-8'
+            modifier: 'UTF-8'
+          - name: 'pt_BR.UTF-8'
+            modifier: 'UTF-8'
+        locales_defaults:
+          LANG: 'pt_BR.UTF-8'
+          LC_CTYPE: 'pt_BR.UTF-8'
+          LANGUAGE: 'pt_BR.UTF-8'
+
+    - name: ontic.ntp
+      include_role:
+        name: ontic.ntp
+      vars:
+        ntp_timezone: 'America/Sao_Paulo'
+        ntp_servers:
+          - 'a.st1.ntp.br'
+          - 'b.st1.ntp.br'
+
+    - name: Stouts.hostname
+      include_role:
+        name: Stouts.hostname
+      vars:
+        hostname_hostname: "{{ inventory_hostname }}"
+        hostname_hosts:
+          "dc": "ip do dc"
+

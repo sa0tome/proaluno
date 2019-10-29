@@ -1,0 +1,2 @@
+[proaluno]
+10.20.30.40 ansible_connection=ssh ansible_user=root

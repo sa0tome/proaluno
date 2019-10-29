@@ -1,0 +1,9 @@
+*~
+*.retry
+.vagrant
+*.swp
+*.log
+*.pyc
+
+roles/*
+!roles/local.*
