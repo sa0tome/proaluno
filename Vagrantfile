@@ -1,9 +1,9 @@
 VAGRANTFILE_API_VERSION = "2"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
-    config.vm.box = "debian/buster64"
+    config.vm.box = "mrlesmithjr/buster64-desktop"
     config.vm.hostname = "proaluno"
-    config.vm.network :private_network, ip: "10.20.30.40"
+    config.vm.network :private_network, ip: "192.168.8.158"
     config.ssh.insert_key = false # important
 
     config.vm.provider :virtualbox do |v|

@@ -3,48 +3,38 @@
   hosts: proaluno
   become: yes
 
-  #### variáveis globais ####
   vars:
-    dc: "143.107.72.181"
 
+    smb_workgroup: smbdomain
+    smb_realm: "smbdomain.fflch.usp.br"
+    smb_dns_servers: 192.168.8.48
+    smb_username: Administrator
+    
   tasks:
 
-  - name: update
-    apt:
-      update_cache: yes
+    - name: update
+      apt:
+        update_cache: yes
 
-  - name: upgrade
-    apt:
-      upgrade: dist
+    - name: upgrade
+      apt:
+        upgrade: dist
 
-  - name: Remove useless packages from the cache
-    apt:
-      autoclean: yes
-      autoremove: yes
+    - name: Remove useless packages from the cache
+      apt:
+        autoclean: yes
+        autoremove: yes
 
-  - name: Instalação de pacotes básicos
-    apt: 
-      name: "{{ packages }}" 
-      state: latest 
-      update_cache: yes
-    vars:
-      packages:
-        - terminator
-        - vlc
-        - gimp
-        - inkscape
-        - audacity
-        - r-base
-        - chromium
-
-    #### roles usadas da comunidade ####
-    - name: oefenweb.rstudio
+    - name: Configura resolv.conf para consultar DNSs no próprio samba
       include_role:
-        name: oefenweb.rstudio
+        name: blackstar257.resolv
       vars:
-        rstudio_version: "xenial-1.1.463"
+        resolv_conf_nameservers:
+          - 192.168.8.48
+        resolv_conf_search_domains:
+          - "{{ smb_realm }}"
 
-    - name: adriagalin.timezone
+    - name: Corrige o timezone para America/Sao_Paulo
       include_role:
         name: adriagalin.timezone
       vars:
@@ -70,14 +60,11 @@
       vars:
         ntp_timezone: 'America/Sao_Paulo'
         ntp_servers:
-          - 'a.st1.ntp.br'
-          - 'b.st1.ntp.br'
+          - '192.168.8.48'
 
-    - name: Stouts.hostname
+    - name: fflch.sssd
       include_role:
-        name: Stouts.hostname
+        name: fflch.sssd
       vars:
-        hostname_hostname: "{{ inventory_hostname }}"
-        hostname_hosts:
-          "dc": "ip do dc"
-
+        sssd_configure: True
+        bind_password: "{{ lookup('passwordstore', 'sti/servidores/smbdomain/Administrator/password') }}"

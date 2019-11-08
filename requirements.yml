@@ -1,38 +1,9 @@
-- src: geerlingguy.mysql
-- src: geerlingguy.nodejs
-- src: geerlingguy.php
-- src: geerlingguy.php-versions
-- src: geerlingguy.composer
+- name: fflch.sssd
+  src: https://github.com/fflch/ansible-role-sssd.git
+  version: master
+
 - src: geerlingguy.firewall
-- src: geerlingguy.drupal-console
-- src: geerlingguy.drush
-- src: geerlingguy.docker
-- src: geerlingguy.pip
-- src: geerlingguy.java
-- src: ferrarimarco.virtualbox
-- src: oefenweb.rstudio
 - src: infOpen.locales
 - src: ontic.ntp
 - src: adriagalin.timezone
-- src: geerlingguy.postgresql
-- src: uspdev.vimspell
-- src: infOpen.vagrant
-- src: zzet.rbenv
-- src: geerlingguy.dotfiles
-
-# forks that I sent PR and were not accepted
-- name: mmacia.vim
-  src: https://github.com/thiagogomesverissimo/ansible-vim.git
-  version: install_force
-
-- name: ansible-role-phpcs
-  src: https://github.com/thiagogomesverissimo/ansible-role-phpcs
-  version: get-composer-bin-dir-from-user
-
-- name: oefenweb.r
-  src: https://github.com/thiagogomesverissimo/ansible-r.git
-  version: debian9
-
-- name: vaulttec.zsh
-  src: https://github.com/vaulttec/ansible-role-zsh.git
-  version: 5b518747c6d3791e936dce678afa7
+- src: blackstar257.resolv
