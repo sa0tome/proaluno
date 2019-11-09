@@ -4,7 +4,6 @@
   become: yes
 
   vars:
-
     smb_workgroup: smbdomain
     smb_realm: "smbdomain.fflch.usp.br"
     smb_dns_servers: 192.168.8.48
@@ -62,9 +61,8 @@
         ntp_servers:
           - '192.168.8.48'
 
-    - name: fflch.sssd
+    - name: fflch.domain-member
       include_role:
-        name: fflch.sssd
+        name: fflch.domain-member
       vars:
-        sssd_configure: True
         bind_password: "{{ lookup('passwordstore', 'sti/servidores/smbdomain/Administrator/password') }}"
