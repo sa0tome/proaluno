@@ -1,2 +1,2 @@
 [proaluno]
-192.168.8.158 ansible_connection=ssh ansible_user=root ansible_ssh_pass=123
+proaluno ansible_host="192.168.8.158" ansible_connection=ssh ansible_user=root ansible_ssh_pass=123

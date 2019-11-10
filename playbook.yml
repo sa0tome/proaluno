@@ -11,6 +11,12 @@
     
   tasks:
 
+    - name: configura /etc/hosts e /etc/hostnane
+      include_role:
+        name: Stouts.hostname
+      vars:
+        hostname_hostname: "{{ inventory_hostname }}.{{smb_realm}}"
+
     - name: update
       apt:
         update_cache: yes
@@ -23,15 +29,6 @@
       apt:
         autoclean: yes
         autoremove: yes
-
-    - name: Configura resolv.conf para consultar DNSs no próprio samba
-      include_role:
-        name: blackstar257.resolv
-      vars:
-        resolv_conf_nameservers:
-          - 192.168.8.48
-        resolv_conf_search_domains:
-          - "{{ smb_realm }}"
 
     - name: Corrige o timezone para America/Sao_Paulo
       include_role:
@@ -60,6 +57,15 @@
         ntp_timezone: 'America/Sao_Paulo'
         ntp_servers:
           - '192.168.8.48'
+
+    - name: Configura resolv.conf para consultar DNSs no próprio samba
+      include_role:
+        name: blackstar257.resolv
+      vars:
+        resolv_conf_nameservers:
+          - 192.168.8.48
+        resolv_conf_search_domains:
+          - "{{ smb_realm }}"
 
     - name: fflch.domain-member
       include_role:
