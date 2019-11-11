@@ -1,10 +1,39 @@
-# proaluno
+# Pró-Aluno FFLCH
 
-# roles usadas do comunidade
+Esse repositório contém todo o código com procedimento completo de build das máquinas
+das salas da pró-alunos da FFLCH. 
 
-## domain member
-https://github.com/bitfinity-nl/ansible-role-samba4-ad-member
+## Imagem
 
-ou 
+A imagem é construída com [Preseed](https://wiki.debian.org/DebianInstaller/Preseed)
+e executam os seguintes procedimentos:
 
-https://github.com/rivorra/samba-winbind-domain
+ - Escolha do mate como ambiente gráfico
+ - Carregamento de um script para configurar o hostname da máquina a partir do dhcp
+ - 
+
+## Provisionamento
+
+Após a instalação da imagem, a ferramenta ansible é utilizada para configuração 
+do resto do ambiente, na ordem:
+
+### Autenticação
+
+Integração com o servidor de autenticação principal da FFLCH
+
+### Instalação das impressoras
+
+### Instalação de softwares do repositório oficial debian
+
+Listas atual:
+
+ - r-base
+ - chromium-browser
+ - vlc
+ - audacity
+ - terminator
+
+### Instalação de softwares que não estão nos repositórios do debian
+
+ - google chrome
+
