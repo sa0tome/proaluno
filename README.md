@@ -1,6 +1,6 @@
 # Pró-Aluno FFLCH
 
-Esse repositório contém todo o código com procedimento completo de build das máquinas
+Esse repositório contém o código com procedimento completo de build das máquinas
 das salas da pró-alunos da FFLCH. 
 
 ## Imagem
