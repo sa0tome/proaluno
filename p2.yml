@@ -1,6 +1,6 @@
 ---
 - name: proaluno
-  hosts: vm
+  hosts: teste
   become: yes
 
   vars:
@@ -46,14 +46,20 @@
       vars:
         ntp_timezone: 'America/Sao_Paulo'
         ntp_servers:
-          - '192.168.8.48'
+          - 143.107.72.180
+          - 143.107.72.181
+          - 143.107.72.182
+          - 143.107.72.183
 
     - name: Configura resolv.conf para consultar DNSs no próprio samba
       include_role:
         name: blackstar257.resolv
       vars:
         resolv_conf_nameservers:
-          - 192.168.8.48
+          - 143.107.72.180
+          - 143.107.72.181
+          - 143.107.72.182
+          - 143.107.72.183
         resolv_conf_search_domains:
           - "{{ realm }}"
 
@@ -61,4 +67,6 @@
       include_role:
         name: fflch.domain-member
       vars:
+        domain_member_samba_server: sambadc180
+        domain_member_interfaces: 'enp2s0 lo'
         domain_member_password: "{{ lookup('passwordstore', 'sti/servidores/smbdomain/Administrator/password') }}"

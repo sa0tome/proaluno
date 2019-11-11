@@ -1,2 +1,3 @@
 [proaluno]
-proaluno ansible_host="192.168.8.158" ansible_connection=ssh ansible_user=root ansible_ssh_pass=123
+vm ansible_host="192.168.8.158" ansible_connection=ssh ansible_user=root ansible_ssh_pass=123
+teste ansible_host="10.64.0.68" ansible_connection=ssh ansible_user=root ansible_ssh_pass=123
