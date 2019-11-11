@@ -4,19 +4,9 @@
   become: yes
 
   vars:
-    smb_workgroup: smbdomain
-    smb_realm: "smbdomain.fflch.usp.br"
-    smb_dns_servers: 192.168.8.48
-    smb_username: Administrator
+    realm: "smbdomain.fflch.usp.br"
     
   tasks:
-
-    - name: configura /etc/hosts e /etc/hostnane
-      include_role:
-        name: Stouts.hostname
-      vars:
-        hostname_hostname: "{{ inventory_hostname }}.{{smb_realm}}"
-
     - name: update
       apt:
         update_cache: yes
@@ -65,10 +55,10 @@
         resolv_conf_nameservers:
           - 192.168.8.48
         resolv_conf_search_domains:
-          - "{{ smb_realm }}"
+          - "{{ realm }}"
 
     - name: fflch.domain-member
       include_role:
         name: fflch.domain-member
       vars:
-        bind_password: "{{ lookup('passwordstore', 'sti/servidores/smbdomain/Administrator/password') }}"
+        domain_member_password: "{{ lookup('passwordstore', 'sti/servidores/smbdomain/Administrator/password') }}"
