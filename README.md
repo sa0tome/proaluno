@@ -25,8 +25,6 @@ Integração com o servidor de autenticação principal da FFLCH
 
 ### Instalação de softwares do repositório oficial debian
 
-Listas atual:
-
  - r-base
  - chromium-browser
  - vlc
