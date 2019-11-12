@@ -34,4 +34,5 @@ Integração com o servidor de autenticação principal da FFLCH
 ### Instalação de softwares que não estão nos repositórios do debian
 
  - google chrome
+ - Rstudio
 
