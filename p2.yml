@@ -70,3 +70,23 @@
         domain_member_samba_server: sambadc180
         domain_member_interfaces: 'enp2s0 lo'
         domain_member_password: "{{ lookup('passwordstore', 'sti/servidores/smbdomain/Administrator/password') }}"
+
+    - name: Install printers
+      shell: "lpadmin -p {{ item.printer }} -v ipp://cups.fflch.usp.br:631/printers/{{ item.printer }} -m {{ item.model }} -o printer-error-policy=abort-job -o sides=two-sided-long-edge -E"
+      with_items:
+          - printer: adm_hp_pb_laserjet4250n_sti
+            model: 'hplip:0/ppd/hplip/HP/hp-laserjet_4250-pcl3.ppd'
+
+          - printer: adm_samsung_pb_k7500lx_fin
+            value: 'openprinting-ppds:0/ppd/openprinting/Samsung/PS/Samsung_K7600_Series.ppd'
+
+          - printer: adm_samsung_cor_x7500lx_ccint
+            value: 'openprinting-ppds:0/ppd/openprinting/Samsung/PS/Samsung_X7600_Series.ppd Samsung X7600'
+
+          - printer: adm_samsung_pb_m4080fx_sgerais
+            value: 'openprinting-ppds:0/ppd/openprinting/Samsung/PS/Samsung_M408x_Series.ppd Samsung M408x'
+
+          - printer: adm_samsung_pb_m4080fx_editora
+            value: 'openprinting-ppds:0/ppd/openprinting/Samsung/PS/Samsung_M408x_Series.ppd Samsung M408x'
+
+
