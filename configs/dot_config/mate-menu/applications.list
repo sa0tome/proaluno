@@ -1,0 +1,11 @@
+separator
+location:/usr/share/applications/mate-calc.desktop
+location:/usr/share/applications/pluma.desktop
+location:/usr/share/applications/mate-terminal.desktop
+location:/usr/share/applications/mate-volume-control.desktop
+separator
+location:/usr/share/applications/mate-system-monitor.desktop
+location:/usr/share/applications/firefox-esr.desktop
+location:/usr/share/applications/libreoffice-writer.desktop
+location:/usr/share/applications/libreoffice-calc.desktop
+location:/usr/share/applications/vlc.desktop
