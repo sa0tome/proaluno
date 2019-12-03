@@ -1,11 +1,16 @@
 ---
-- name: proaluno
-  hosts: teste
+- name: letras
+  hosts: letras
   become: yes
 
   vars:
     realm: "smbdomain.fflch.usp.br"
-    
+    cups_server: "ipp://cups.fflch.usp.br:631/printers/"
+    cups_printers:
+      - name: let_samsung_pb_k7500lx_proaluno
+        short: letras
+        model: 'openprinting-ppds:0/ppd/openprinting/Samsung/PS/Samsung_K7600_Series.ppd'
+
   tasks:
     - name: update
       apt:
@@ -19,6 +24,17 @@
       apt:
         autoclean: yes
         autoremove: yes
+
+    - name: Instalação de pacotes via apt
+      apt: name="{{ item }}" state=latest update_cache=yes
+      with_items:
+        - terminator
+        - vlc
+        - chromium
+        - okular
+        - nomacs
+        - praat
+        - qgis
 
     - name: Corrige o timezone para America/Sao_Paulo
       include_role:
@@ -40,9 +56,9 @@
           LC_CTYPE: 'pt_BR.UTF-8'
           LANGUAGE: 'pt_BR.UTF-8'
 
-    - name: ontic.ntp
+    - name: geerlingguy.ntp
       include_role:
-        name: ontic.ntp
+        name: geerlingguy.ntp
       vars:
         ntp_timezone: 'America/Sao_Paulo'
         ntp_servers:
@@ -68,9 +84,36 @@
         name: fflch.domain-member
       vars:
         domain_member_samba_server: sambadc180
-        domain_member_interfaces: 'enp2s0 lo'
         domain_member_password: "{{ lookup('passwordstore', 'sti/servidores/smbdomain/Administrator/password') }}"
 
+    # https://wiki.debian.org/SystemPrinting
+    - name: Install a printers list of packages
+      apt:
+        pkg:
+        - cups
+        - task-print-server
+        - printer-driver-all
+        - foomatic-db-engine
+        - hp-ppd
+        - openprinting-ppds
 
+    - name: Install printers
+      shell: >
+        lpadmin -p {{ item.short }}
+        -v {{cups_server}}{{ item.name }}
+        -m {{ item.model }}
+        -o printer-error-policy=abort-job
+        -o sides=two-sided-long-edge -E
+      with_items: "{{ cups_printers }}"
 
+    - name: Disable cups-browsed
+      systemd:
+        name: "cups-browsed"
+        state: stopped
+        enabled: no
+        masked: yes
 
+    - name: Remove avahi-daemon
+      apt:
+        name: "avahi-daemon"
+        purge: yes

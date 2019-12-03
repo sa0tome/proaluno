@@ -5,7 +5,9 @@ das salas da pró-alunos da FFLCH.
 
 ## Imagem
 
-A imagem é construída com o arquivo preseed.cfg.
+A imagem é construída com o arquivo preseed.cfg:
+
+ - http://public.fflch.usp.br/proaluno/preseed.cfg
 
 ## Provisionamento
 
