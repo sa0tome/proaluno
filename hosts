@@ -5,3 +5,7 @@ linux084019127 ansible_host="10.184.0.58"
 [letras:vars]
 ansible_connection=ssh
 ansible_user=root
+
+# Ambiente para provisionamento dos testes
+[tests]
+linuxtest123456 ansible_host="127.0.0.1" ansible_connection=ssh ansible_user=root ansible_port=2222
