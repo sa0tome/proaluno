@@ -121,4 +121,5 @@
     - name: workaround os usuários dado que pam_mkhomedir.so umask=0077 não tá rolando
       cron:
         name: "fix permissions"
+        minute: "*/5"
         job: "chmod -R 0700 /home/*"
