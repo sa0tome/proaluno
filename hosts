@@ -1,6 +1,7 @@
 [letras]
 linux084019102 ansible_host="10.184.0.57"
 linux084019127 ansible_host="10.184.0.58"
+linux084038325 ansible_host="10.184.0.69"
 
 [letras:vars]
 ansible_connection=ssh
