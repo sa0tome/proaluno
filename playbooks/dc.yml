@@ -1,0 +1,75 @@
+---
+- name: dc
+  become: yes
+  hosts: dc
+
+  #### global vars
+  vars:
+    # variables to smb.conf template used at sambadc role
+    template_smb_cups_server    : '192.168.8.43:631'
+    template_smb_netbios        : "{{ inventory_hostname }}"
+    sambadc_realm: "smbdomain.fflch.usp.br"
+    printersfile: "{{ lookup('file', '../../files/printers.csv') }}"
+    printers: "{{ printersfile.split('\n') }}"
+    template_smb_dns_forwarder: 8.8.8.8
+    template_printers: []
+
+  tasks:
+
+    - name: configura /etc/hosts e /etc/hostnane
+      include_role:
+        name: Stouts.hostname
+      vars:
+        hostname_hostname: "{{ inventory_hostname }}.{{sambadc_realm}}"
+
+    - name: Corrige o timezone para America/Sao_Paulo
+      include_role:
+        name: adriagalin.timezone
+      vars:
+        ag_timezone: 'America/Sao_Paulo'
+
+    - name: Altera o locale para pt_BR.UTF-8
+      include_role:
+        name: infOpen.locales
+      vars:
+        locales_to_configure:
+          - name: 'pt_BR.UTF-8'
+            modifier: 'UTF-8'
+        locales_defaults:
+          LANG: 'pt_BR.UTF-8'
+          LC_CTYPE: 'pt_BR.UTF-8'
+          LANGUAGE: 'pt_BR.UTF-8'
+
+    - name: Configura servidor de ntp
+      include_role:
+        name: ontic.ntp
+      vars:
+        ntp_timezone: 'America/Sao_Paulo'
+        ntp_servers:
+          - 'a.st1.ntp.br'
+          - 'b.st1.ntp.br'
+
+    - name: Instalação samba
+      include_role:
+        name: fflch.install_samba
+      vars:
+        install_samba_build: False
+        install_samba_dc_server: True
+
+    - name: Configura samba como um Domain Controller
+      include_role:
+        name: fflch.sambadc
+      vars:
+        sambadc_type: "new"
+        sambadc_realm: "smbdomain.fflch.usp.br"
+        sambadc_admin_password: "Pr0Aluno123"
+        sambadc_smb_path: "{{ playbook_dir }}/../../templates/smb.conf.j2"
+ 
+    - name: Configura resolv.conf para consultar DNSs no próprio samba
+      include_role:
+        name: blackstar257.resolv
+      vars:
+        resolv_conf_nameservers:
+          - 192.168.8.48
+        resolv_conf_search_domains:
+          - "{{ sambadc_realm }}"

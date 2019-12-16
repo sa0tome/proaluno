@@ -7,6 +7,12 @@ linux084038325 ansible_host="10.184.0.69"
 ansible_connection=ssh
 ansible_user=root
 
-# Ambiente para provisionamento dos testes
-[tests]
-linuxtest123456 ansible_host="127.0.0.1" ansible_connection=ssh ansible_user=root ansible_port=2222
+######### Ambiente para provisionamento dos testes ######### 
+[vagrant]
+dc ansible_host="10.20.0.2"
+proaluno1 ansible_host="10.20.0.3"
+
+[vagrant:vars]
+ansible_user="vagrant"
+ansible_ssh_private_key_file="~/.vagrant.d/insecure_private_key"
+
