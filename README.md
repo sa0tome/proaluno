@@ -1,40 +1,42 @@
 # Pró-Aluno FFLCH
 
-Esse repositório contém a infraestrutura como código completo dos builds das máquinas
-das salas da pró-alunos da FFLCH. 
+Esse repositório contém a infraestrutura como código completo dos builds das 
+máquinas das salas da pró-alunos da FFLCH. 
 
 ## Imagem
 
-A imagem é construída com o arquivo preseed.cfg:
+A imagem é construída com um arquivo preseed.cfg, versionado neste repositório
+e disponível em:
 
  - http://public.fflch.usp.br/proaluno/preseed.cfg
 
 ## Provisionamento
 
 Após a instalação da imagem, a ferramenta ansible é utilizada para configuração 
-do resto do ambiente:
+do resto do ambiente.
 
-### Autenticação
+ - Integração com o servidor de autenticação samba da FFLCH
+ - Instalação das impressoras
+ - Instalação de pacotes por apt
 
-Integração com o servidor de autenticação samba da FFLCH
+## Informações para contribuição:
 
-### Instalação das impressoras
+### Preparação do ambiente (testado com debian 10)
 
-### Instalação de softwares do repositório oficial debian:
+1. Instale na sua distro: ansible, vagrant
 
- - r-base
- - chromium-browser
- - vlc
- - okular
- - audacity
- - terminator
- - cdo
- - nco
- - grads
- - gfortran
+2. Instalação e configuração do libvirt para criar virtualização:
 
-### Instalação de softwares que não estão nos repositórios do debian
+    $ sudo apt install virt-manager libvirt-dev
+    $ sudo addgroup SEU-USER libvirt
 
- - opengrads
- - Rstudio
+3. Instalação do plugin do libvirt no ansible:
 
+    $ vagrant plugin install vagrant-libvirt
+
+4. Ligar as VMs:
+
+    $ cd proaluno
+    $ vagrant up
+
+5. 
