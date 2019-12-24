@@ -47,4 +47,8 @@ do resto do ambiente.
 
     ansible-playbook playbooks/samba.yml
 
+7. Subindo a VM:
+
+    ansible-playbook playbooks/vm.yml
+
 

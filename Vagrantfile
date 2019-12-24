@@ -5,7 +5,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
     config.vm.define :"samba" do |host|
       host.vm.box = "generic/ubuntu1804"
-      host.vm.hostname = "workstation"
       host.vm.network :private_network, ip: "10.20.30.5"
       host.ssh.insert_key = false # important
 
@@ -17,7 +16,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
     config.vm.define :"vm" do |host|
       host.vm.box = "generic/debian10"
-      host.vm.hostname = "workstation"
       host.vm.network :private_network, ip: "10.20.20.6"
       host.ssh.insert_key = false # important
 

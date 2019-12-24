@@ -32,7 +32,7 @@
           LC_CTYPE: 'pt_BR.UTF-8'
           LANGUAGE: 'pt_BR.UTF-8'
 
-    - name: Configura servidor de ntp
+    - name: Cria um servidor ntp
       include_role:
         name: ontic.ntp
       vars:
@@ -48,14 +48,11 @@
         install_samba_build: False
         install_samba_dc_server: True
 
-#    - name: Configura samba como um Domain Controller
-#      include_role:
-#        name: fflch.sambadc
-#      vars:
-#        sambadc_type: "new"
-#        sambadc_realm: "smbdomain.fflch.usp.br"
-#        sambadc_admin_password: "Pr0Aluno123"
-#        sambadc_smb_path: "{{ playbook_dir }}/../../templates/smb.conf.j2"
+    - name: Configura samba como um Domain Controller
+      include_role:
+        name: fflch.sambadc
+      vars:
+        sambadc_admin_password: "Pr0Aluno123"
  
 #    - name: Configura resolv.conf para consultar DNSs no próprio samba
 #      include_role:
