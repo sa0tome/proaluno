@@ -39,4 +39,12 @@ do resto do ambiente.
     $ cd proaluno
     $ vagrant up
 
-5. 
+5. Instalação das roles do ansible
+
+    ansible-galaxy install -r requirements.yml
+
+6. Provisionando o servidor samba:
+
+    ansible-playbook playbooks/samba.yml
+
+

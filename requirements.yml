@@ -1,6 +1,10 @@
-- name: fflch.domain-member
-  src: https://github.com/fflch/ansible-role-domain-member.git
-  version: master
+- name: fflch.install_samba
+  src: https://github.com/fflch/ansible-role-install-samba.git
+  version: 1.0.1
+
+- name: fflch.sambadc
+  src: https://github.com/fflch/ansible-role-sambadc.git
+  version: 1.0.1
 
 - src: geerlingguy.firewall
 - src: infOpen.locales
