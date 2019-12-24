@@ -49,6 +49,7 @@ do resto do ambiente.
 
 7. Subindo a VM:
 
+```
     ansible-playbook playbooks/vm.yml
-
+```
 

@@ -6,7 +6,6 @@
   src: https://github.com/fflch/ansible-role-sambadc.git
   version: 1.0.1
 
-- src: geerlingguy.firewall
 - src: infOpen.locales
 - src: ontic.ntp
 - src: adriagalin.timezone
