@@ -4,33 +4,15 @@
   become: yes
 
   vars:
-    realm: "smbdomain.fflch.usp.br"
-    cups_server: "ipp://cups.fflch.usp.br:631/printers/"
-    cups_printers:
-      - name: let_samsung_pb_k7500lx_proaluno
-        short: letras
-        model: 'openprinting-ppds:0/ppd/openprinting/Samsung/PS/Samsung_K7600_Series.ppd'
+    realm: "proaluno.usp.br"
 
   tasks:
-
-    - name: copy source.list
-      template:
-        src: "templates/sources.list.j2"
-        dest: "/etc/apt/sources.list"
-
-    - name: update
-      apt:
-        update_cache: yes
-        cache_valid_time: 1800
-
-    - name: upgrade
-      apt:
-        upgrade: dist
-
-    - name: Remove useless packages from the cache
-      apt:
-        autoclean: yes
-        autoremove: yes
+    - name: proaluno role
+      include_role:
+        name: local.proaluno
+      vars:
+        proaluno_deploy_printers: False
+        proaluno_install_pacotes_debian: False
 
     - name: Corrige o timezone para America/Sao_Paulo
       include_role:

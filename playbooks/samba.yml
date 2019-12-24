@@ -54,11 +54,11 @@
       vars:
         sambadc_admin_password: "Pr0Aluno123"
  
-#    - name: Configura resolv.conf para consultar DNSs no próprio samba
-#      include_role:
-#        name: blackstar257.resolv
-#      vars:
-#        resolv_conf_nameservers:
-#          - 192.168.8.48
-#        resolv_conf_search_domains:
-#          - "{{ sambadc_realm }}"
+    - name: Configura resolv.conf para consultar DNSs no próprio samba
+      include_role:
+        name: blackstar257.resolv
+      vars:
+        resolv_conf_nameservers:
+          - 10.20.30.5
+        resolv_conf_search_domains:
+          - "{{ sambadc_realm }}"

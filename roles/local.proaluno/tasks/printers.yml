@@ -1,0 +1,31 @@
+# https://wiki.debian.org/SystemPrinting
+- name: Install a printers list of packages
+  apt:
+    pkg:
+    - cups
+    - task-print-server
+    - printer-driver-all
+    - foomatic-db-engine
+    - hp-ppd
+    - openprinting-ppds
+
+- name: Disable cups-browsed
+  systemd:
+    name: "cups-browsed"
+    state: stopped
+    enabled: no
+    masked: yes
+
+- name: Remove avahi-daemon
+  apt:
+    name: "avahi-daemon"
+    purge: yes
+
+- name: Install printers
+  shell: >
+    lpadmin -p {{ item.short }}
+    -v {{cups_server}}{{ item.name }}
+    -m {{ item.model }}
+    -o printer-error-policy=abort-job
+    -o sides=two-sided-long-edge -E
+  with_items: "{{ cups_printers }}"

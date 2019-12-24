@@ -1,0 +1,29 @@
+- name: Instalação de pacotes via apt
+  apt:
+    pkg:
+      - terminator
+      - vlc
+      - build-essential
+      - firmware-linux-nonfree
+      - chromium
+      - okular
+      - nomacs
+      - praat
+      - qgis
+      - vim
+      - r-base
+      - gfortran
+      - fonts-crosextra-carlito
+      - fonts-crosextra-caladea
+      - ttf-mscorefonts-installer
+      - gimp
+      - gimp-help-pt
+      - inkscape
+      - audacity
+      - git
+      - gvfs-backends # para celulares
+      - gnome-disk-utility
+      - zip
+      - unzip
+      - rar
+      - unrar

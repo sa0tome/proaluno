@@ -1,2 +1,5 @@
 ---
 # defaults file for local.proaluno
+
+proaluno_install_pacotes_debian: True
+proaluno_deploy_printers: True
