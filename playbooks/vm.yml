@@ -56,5 +56,5 @@
         name: fflch.domain-member
       vars:
         domain_member_realm: "{{ realm }}"
-        domain_member_workgroup: "proaluno"
+        domain_member_samba_server: "samba"
         domain_member_password: "Pr0Aluno123"
