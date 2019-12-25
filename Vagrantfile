@@ -16,7 +16,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
     config.vm.define :"vm" do |host|
       host.vm.box = "generic/debian10"
-      host.vm.network :private_network, ip: "10.20.20.6"
+      host.vm.network :private_network, ip: "10.20.30.6"
       host.ssh.insert_key = false # important
 
       host.vm.provider :libvirt do |v|

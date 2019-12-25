@@ -35,15 +35,16 @@ do resto do ambiente.
     $ vagrant plugin install vagrant-libvirt
 
 4. Ligar as VMs:
-
-    $ cd proaluno
-    $ vagrant up
+    
+    git clone git@github.com:fflch/proaluno.git
+    cd proaluno
+    vagrant up
 
 5. Instalação das roles do ansible
 
     ansible-galaxy install -r requirements.yml
 
-6. Provisionando o servidor samba:
+6. Provisionando o servidor samba com senha do Administrator Pr0Aluno123:
 
     ansible-playbook playbooks/samba.yml
 

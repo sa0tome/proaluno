@@ -1,6 +1,6 @@
 ---
-- name: tests
-  hosts: tests
+- name: deploy vm example host
+  hosts: vm
   become: yes
 
   vars:
@@ -40,20 +40,14 @@
       vars:
         ntp_timezone: 'America/Sao_Paulo'
         ntp_servers:
-          - 143.107.72.180
-          - 143.107.72.181
-          - 143.107.72.182
-          - 143.107.72.183
+          - 10.20.30.5
 
     - name: Configura resolv.conf para consultar DNSs no próprio samba
       include_role:
         name: blackstar257.resolv
       vars:
         resolv_conf_nameservers:
-          - 143.107.72.180
-          - 143.107.72.181
-          - 143.107.72.182
-          - 143.107.72.183
+          - 10.20.30.5
         resolv_conf_search_domains:
           - "{{ realm }}"
 
@@ -61,67 +55,6 @@
       include_role:
         name: fflch.domain-member
       vars:
-        domain_member_samba_server: sambadc180
-        domain_member_password: "{{ lookup('passwordstore', 'sti/servidores/smbdomain/Administrator/password') }}"
-
-    # https://wiki.debian.org/SystemPrinting
-    - name: Install a printers list of packages
-      apt:
-        pkg:
-        - cups
-        - task-print-server
-        - printer-driver-all
-        - foomatic-db-engine
-        - hp-ppd
-        - openprinting-ppds
-
-    - name: Install printers
-      shell: >
-        lpadmin -p {{ item.short }}
-        -v {{cups_server}}{{ item.name }}
-        -m {{ item.model }}
-        -o printer-error-policy=abort-job
-        -o sides=two-sided-long-edge -E
-      with_items: "{{ cups_printers }}"
-
-    - name: Disable cups-browsed
-      systemd:
-        name: "cups-browsed"
-        state: stopped
-        enabled: no
-        masked: yes
-
-    - name: Remove avahi-daemon - para não varrer impressoras na rede
-      apt:
-        name: "avahi-daemon"
-        purge: yes
-
-    - name: Instalação de pacotes via apt
-      apt:
-        pkg:
-          - terminator
-          - vlc
-          - build-essential
-          - firmware-linux-nonfree
-          - chromium
-          - okular
-          - nomacs
-          - praat
-          - qgis
-          - vim
-          - r-base
-          - gfortran
-          - fonts-crosextra-carlito
-          - fonts-crosextra-caladea
-          - ttf-mscorefonts-installer
-          - gimp
-          - gimp-help-pt
-          - inkscape
-          - audacity
-          - git
-          - gvfs-backends # para celulares
-          - gnome-disk-utility
-          - zip
-          - unzip
-          - rar
-          - unrar
+        domain_member_realm: "{{ realm }}"
+        domain_member_workgroup: "proaluno"
+        domain_member_password: "Pr0Aluno123"
