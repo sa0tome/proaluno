@@ -23,34 +23,32 @@ do resto do ambiente.
 
 ### Preparação do ambiente (testado com debian 10)
 
-1. Instale na sua distro: ansible, vagrant
+Instale na sua distro: ansible, vagrant
 
-2. Instalação e configuração do libvirt para criar virtualização:
+Instalação e configuração do libvirt para criar virtualização:
 
     $ sudo apt install virt-manager libvirt-dev
     $ sudo addgroup SEU-USER libvirt
 
-3. Instalação do plugin do libvirt no ansible:
+Instalação do plugin do libvirt no ansible:
 
     $ vagrant plugin install vagrant-libvirt
 
-4. Ligar as VMs:
+Ligar as VMs:
     
     git clone git@github.com:fflch/proaluno.git
     cd proaluno
     vagrant up
 
-5. Instalação das roles do ansible
+Instalação das roles do ansible
 
     ansible-galaxy install -r requirements.yml
 
-6. Provisionando o servidor samba com senha do Administrator Pr0Aluno123:
+Provisionando o servidor samba com senha do Administrator Pr0Aluno123:
 
     ansible-playbook playbooks/samba.yml
 
-7. Subindo a VM:
+Subindo a VM:
 
-```
     ansible-playbook playbooks/vm.yml
-```
 
