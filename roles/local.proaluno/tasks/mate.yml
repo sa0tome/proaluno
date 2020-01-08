@@ -1,0 +1,13 @@
+- name: Instalação de pacotes mate
+  apt:
+    pkg:
+      - task-mate-desktop
+      - mate-desktop-environment
+      - mate-menu
+      - dconf-cli
+
+- name: Copy /etc/skel/.config
+  copy:
+    src: files/mate/dot_config/
+    dest: /etc/skel/.config
+    mode: '0755'

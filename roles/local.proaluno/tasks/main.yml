@@ -20,6 +20,9 @@
 - import_tasks: pacotes_debian.yml
   when: proaluno_install_pacotes_debian
 
+- import_tasks: mate.yml
+  when: proaluno_install_mate
+
 #- name: workaround - pam_mkhomedir.so umask=0077 não tá rolando
 #  cron:
 #    name: "fix permissions"
