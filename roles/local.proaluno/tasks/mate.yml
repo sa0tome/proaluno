@@ -11,3 +11,31 @@
     src: files/mate/dot_config/
     dest: /etc/skel/.config
     mode: '0755'
+
+- name: create /etc/skel/ folders
+  file:
+    path: "/etc/skel/{{ item }}"
+    state: directory
+    mode: '0755'
+  with_items:
+    - 'Área de trabalho'
+    - 'Documentos'
+    - 'Downloads'
+
+- name: create /proaluno folder
+  file:
+    path: /proaluno
+    state: directory
+    mode: '0755'
+
+- name: Copy /proaluno/mate.sh
+  copy:
+    src: files/mate.sh
+    dest: /proaluno/mate.sh
+    mode: '0755'
+
+- name: Copy /proaluno/dconf-dump.ini
+  copy:
+    src: files/dconf-dump.ini
+    dest: /proaluno/dconf-dump.ini
+    mode: '0755'

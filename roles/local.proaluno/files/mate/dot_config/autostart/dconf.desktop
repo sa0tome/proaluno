@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Exec=/proaluno/mate.sh
+Hidden=false
+X-MATE-Autostart-enabled=true
+Name[pt_BR]=mate-usp
+Name=mate-usp
+Comment[pt_BR]=mate-usp
+Comment=mate-usp
+
