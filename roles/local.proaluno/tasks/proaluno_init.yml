@@ -1,0 +1,11 @@
+- name: Copy proaluno_init script
+  copy:
+    src: files/proaluno_init.sh
+    dest: /proaluno/proaluno_init.sh
+    mode: '0700'
+
+- name: proaluno_init.sh script
+  cron:
+    name: "a job for reboot"
+    special_time: reboot
+    job: "/proaluno/proaluno_init.sh"

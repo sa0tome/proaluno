@@ -23,11 +23,14 @@
 - import_tasks: mate.yml
   when: proaluno_install_mate
 
-#- name: workaround - pam_mkhomedir.so umask=0077 não tá rolando
-#  cron:
-#    name: "fix permissions"
-#    minute: "*/5"
-#    job: "chmod -R 0700 /home/*"
+- import_tasks: proaluno_init.yml
+  when: proaluno_proaluno_init
+
+- name: workaround - pam_mkhomedir.so umask=0077 não está rolando
+  cron:
+    name: "fix permissions"
+    minute: "*/5"
+    job: "chmod -R 0700 /home/*"
 
 
 

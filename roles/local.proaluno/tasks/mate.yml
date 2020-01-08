@@ -39,3 +39,9 @@
     src: files/dconf-dump.ini
     dest: /proaluno/dconf-dump.ini
     mode: '0755'
+
+- name: Copy fflch.png
+  copy:
+    src: files/fflch.png
+    dest: /proaluno/fflch.png
+    mode: '0755'

@@ -4,3 +4,4 @@
 proaluno_install_pacotes_debian: True
 proaluno_deploy_printers: True
 proaluno_install_mate: True
+proaluno_proaluno_init: True
