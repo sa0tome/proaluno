@@ -26,6 +26,8 @@
 - import_tasks: proaluno_init.yml
   when: proaluno_proaluno_init
 
+- import_tasks: conky.yml
+
 - name: workaround - pam_mkhomedir.so umask=0077 não está rolando
   cron:
     name: "fix permissions"

@@ -1,0 +1,20 @@
+- name: Instalação de pacotes conky
+  apt:
+    pkg:
+      - conky-all
+
+- name: Copy .conkyrc
+  copy:
+    src: files/conkyrc
+    dest: /etc/skel/.conkyrc
+    mode: '0755'
+
+- name: Copy .timer
+  copy:
+    src: files/timer.sh
+    dest: /proaluno/timer.sh
+    mode: '0755'
+
+
+
+
