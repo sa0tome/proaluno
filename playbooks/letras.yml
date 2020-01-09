@@ -13,53 +13,9 @@
 
   tasks:
 
-    - name: copy source.list
-      template:
-        src: "templates/sources.list.j2"
-        dest: "/etc/apt/sources.list"
-
-    - name: update
-      apt:
-        update_cache: yes
-
-    - name: upgrade
-      apt:
-        upgrade: dist
-
-    - name: Remove useless packages from the cache
-      apt:
-        autoclean: yes
-        autoremove: yes
-
-    - name: Instalação de pacotes via apt
-      apt:
-        pkg:
-          - terminator
-          - vlc
-          - build-essential
-          - firmware-linux-nonfree
-          - chromium
-          - okular
-          - nomacs
-          - praat
-          - qgis
-          - vim
-          - r-base
-          - gfortran
-          - fonts-crosextra-carlito
-          - fonts-crosextra-caladea
-          - ttf-mscorefonts-installer
-          - gimp
-          - gimp-help-pt
-          - inkscape
-          - audacity
-          - git
-          - gvfs-backends # para celulares
-          - gnome-disk-utility
-          - zip
-          - unzip
-          - rar
-          - unrar
+    - name: proaluno role
+      include_role:
+        name: local.proaluno
 
     - name: Corrige o timezone para America/Sao_Paulo
       include_role:
@@ -108,43 +64,6 @@
       include_role:
         name: fflch.domain-member
       vars:
+        domain_member_realm: "{{ realm }}"
         domain_member_samba_server: sambadc180
         domain_member_password: "{{ lookup('passwordstore', 'sti/servidores/smbdomain/Administrator/password') }}"
-
-    # https://wiki.debian.org/SystemPrinting
-    - name: Install a printers list of packages
-      apt:
-        pkg:
-        - cups
-        - task-print-server
-        - printer-driver-all
-        - foomatic-db-engine
-        - hp-ppd
-        - openprinting-ppds
-
-    - name: Install printers
-      shell: >
-        lpadmin -p {{ item.short }}
-        -v {{cups_server}}{{ item.name }}
-        -m {{ item.model }}
-        -o printer-error-policy=abort-job
-        -o sides=two-sided-long-edge -E
-      with_items: "{{ cups_printers }}"
-
-    - name: Disable cups-browsed
-      systemd:
-        name: "cups-browsed"
-        state: stopped
-        enabled: no
-        masked: yes
-
-    - name: Remove avahi-daemon
-      apt:
-        name: "avahi-daemon"
-        purge: yes
-        
-    - name: workaround - pam_mkhomedir.so umask=0077 não tá rolando
-      cron:
-        name: "fix permissions"
-        minute: "*/5"
-        job: "chmod -R 0700 /home/*"
