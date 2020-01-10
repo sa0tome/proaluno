@@ -10,5 +10,3 @@ killall caja
 mate-volume-control-applet &
 killall compton
 compton &
-
-conky
