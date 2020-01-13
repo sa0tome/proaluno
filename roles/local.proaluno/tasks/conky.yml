@@ -2,6 +2,8 @@
   apt:
     pkg:
       - conky-all
+      - conky
+      - acct
 
 - name: Copy .conkyrc
   copy:

@@ -27,6 +27,7 @@
   when: proaluno_proaluno_init
 
 - import_tasks: conky.yml
+- import_tasks: lightdm.yml
 
 - name: workaround - pam_mkhomedir.so umask=0077 não está rolando
   cron:

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # last | grep "still logged in"
-old=$(w | tail -1 | grep $(whoami)| tr -s ' '| cut -d' ' -f4)
+old=$(w -h | grep $(whoami) | head -1 | tr -s ' '| cut -d' ' -f4)
 new=$(date +"%H:%M")
 
 # https://stackoverflow.com/questions/14309032/bash-script-difference-in-minutes-between-two-times

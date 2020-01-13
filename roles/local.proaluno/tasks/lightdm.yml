@@ -1,0 +1,11 @@
+- name: Copy login.png
+  copy:
+    src: files/login.png
+    dest: /proaluno/login.png
+    mode: '0755'
+
+- name: Copy lightdm-gtk-greeter.conf
+  copy:
+    src: files/lightdm-gtk-greeter.conf
+    dest: /etc/lightdm/lightdm-gtk-greeter.conf
+    mode: '0755'
