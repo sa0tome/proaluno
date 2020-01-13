@@ -1,5 +1,5 @@
 [gh]
-linux084019240 ansible_host="10.188.0.4"
+#linux084019240 ansible_host="10.184.0.102"
 #linux084019269 ansible_host="10.184.0.103"
 #linux084019268 ansible_host="10.184.0.104"
 #linux084019264 ansible_host="10.184.0.105"
@@ -33,6 +33,15 @@ linux084019240 ansible_host="10.188.0.4"
 #linux084019296 ansible_host="10.184.0.133"
 #linux084019235 ansible_host="10.184.0.134"
 #linux084019238 ansible_host="10.184.0.135"
+linux084019228 ansible_host="10.184.0.136"
+linux084019227 ansible_host="10.184.0.137"
+linux084019229 ansible_host="10.184.0.138"
+linux084019234 ansible_host="10.184.0.139"
+linux084019230 ansible_host="10.184.0.140"
+linux084019275 ansible_host="10.184.0.141"
+linux084019277 ansible_host="10.184.0.142"
+linux084019281 ansible_host="10.184.0.143"
+linux084019239 ansible_host="10.184.0.144"
 
 [letras]
 linux008035793 ansible_host="10.184.0.56"
