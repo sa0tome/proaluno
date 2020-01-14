@@ -21,6 +21,11 @@
     - 'Área de trabalho'
     - 'Documentos'
     - 'Downloads'
+    - 'Imagens'
+    - 'Vídeos'
+    - 'Música'
+    - 'Público'
+    - 'Modelos'
 
 - name: create /proaluno folder
   file:

@@ -3,8 +3,8 @@ Type=Application
 Exec=/proaluno/mate.sh
 Hidden=false
 X-MATE-Autostart-enabled=true
-Name[pt_BR]=mate-usp
-Name=mate-usp
-Comment[pt_BR]=mate-usp
+Name[pt_BR]=mateusp
+Name=mateusp
+Comment[pt_BR]=mateusp
 Comment=mate-usp
 

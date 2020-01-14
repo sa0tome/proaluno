@@ -24,8 +24,6 @@
   when: proaluno_install_mate
 
 - import_tasks: proaluno_init.yml
-  when: proaluno_proaluno_init
-
 - import_tasks: conky.yml
 - import_tasks: lightdm.yml
 

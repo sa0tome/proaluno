@@ -59,11 +59,6 @@ linux084019115 ansible_host="10.184.0.78"
 linux084019122 ansible_host="10.184.0.79"
 linux084019132 ansible_host="10.184.0.80"
 linux084019113 ansible_host="10.184.0.81"
-linux084025432 ansible_host="10.184.0.82"
-linux084025434 ansible_host="10.184.0.83"
-linux084025430 ansible_host="10.184.0.84"
-linux084025431 ansible_host="10.184.0.85"
-linux084025429 ansible_host="10.184.0.86"
 linux084019107 ansible_host="10.184.0.87"
 linux084019101 ansible_host="10.184.0.88"
 linux084019284 ansible_host="10.184.0.89"
@@ -78,7 +73,6 @@ linux008038373 ansible_host="10.184.0.97"
 linux008034926 ansible_host="10.184.0.98"
 linux084019278 ansible_host="10.184.0.99"
 linux084019112 ansible_host="10.184.0.100"
-linux084025433 ansible_host="10.184.0.101"
 
 [letras:vars]
 ansible_connection=ssh
@@ -88,7 +82,7 @@ ansible_user=root
 ansible_connection=ssh
 ansible_user=root
 
-######### Ambiente para provisionamento dos testes ######### 
+######### Ambiente de desenvolvimento ######### 
 [vagrant]
 samba ansible_host="10.20.30.5"
 vm ansible_host="10.20.30.6"
