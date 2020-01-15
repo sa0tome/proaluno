@@ -5,6 +5,7 @@
       - vlc
       - build-essential
       - firmware-linux-nonfree
+      - ntfs-3g
       - chromium
       - okular
       - nomacs
