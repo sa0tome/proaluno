@@ -67,3 +67,7 @@
         domain_member_realm: "{{ realm }}"
         domain_member_samba_server: sambadc180
         domain_member_password: "{{ lookup('passwordstore', 'sti/servidores/smbdomain/Administrator/password') }}"
+
+    - name: cmprescott.chrome
+      include_role:
+        name: cmprescott.chrome

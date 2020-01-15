@@ -16,3 +16,4 @@
 - src: blackstar257.resolv
 - src: Stouts.hostname
 - src: geerlingguy.ntp
+- src: cmprescott.chrome

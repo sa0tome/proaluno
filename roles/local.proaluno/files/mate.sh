@@ -8,3 +8,5 @@
 #killall mate-volume-control-applet
 #killall caja
 #mate-volume-control-applet
+
+conky -d -p 15

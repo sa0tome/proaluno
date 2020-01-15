@@ -30,7 +30,7 @@ conky.config = {
 conky.text = [[
 Pró-Aluno FFLCH
 $hr
-${color grey}Logado(a) há: $color ${exec /proaluno/timer.sh} 
+${color grey}Logado(a) há: $color ${execi 60 /proaluno/timer.sh} 
 $hr
-${color grey}Impressões de hoje: $color${execi 1000  wget -q -O- https://quotas.fflch.usp.br/pages/today/$(whoami); echo}
+${color grey}Impressões de hoje: $color${execi 60  wget -q -O- https://quotas.fflch.usp.br/pages/today/$(whoami); echo}
 ]]
