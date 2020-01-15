@@ -50,3 +50,9 @@
     src: files/fflch.png
     dest: /proaluno/fflch.png
     mode: '0755'
+
+- name: Copy 10dconf_override
+  copy:
+    src: files/10dconf_override
+    dest: /etc/X11/Xsession.d/10dconf_override
+    mode: '0644'
