@@ -6,6 +6,8 @@
       - build-essential
       - firmware-linux-nonfree
       - ntfs-3g
+      - exfat-fuse
+      - exfat-utils
       - chromium
       - okular
       - nomacs
