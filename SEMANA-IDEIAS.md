@@ -1,17 +1,27 @@
-
-Palestras:
+Palestras Gerais:
 
     Conceitos de software livre
     Padrões abertos e LibreOffice
-    Grupos: Flusp, tecs...
+
+Linux InstallFest:
+
+    qual sala?
 
 Mini-cursos introdutórios:
 
+    Organizando bibliografia com Zotero (Aluna Paulo)
     Libreoffice + Zotero
+    latex (prof. Marcos Lopes) + zotero
     Latex + visual studio code + Zotero
     Grads (profa. Elisa Siqueira)
-    qgis (alguém da Geografia?)
     R (alguém da Sociais?)
     Praat e NLTK (felipe dachshund?)
-    latex (prof. Marcos Lopes)
+    Qgis (Aluno Reinaldo)
     Análise de dados com python (Alguém do ime?)
+    Palestra sobre Licenças
+    git?
+    Gimp
+    Blender?
+    Inkscape?
+    Openshot?
+    https://software-carpentry.org/
