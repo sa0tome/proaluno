@@ -5,6 +5,11 @@
       - vlc
       - build-essential
       - firmware-linux-nonfree
+      - webext-ublock-origin
+      - chromium-ublock-origin
+      - texlive-full
+      - texstudio-l10n 
+      - texstudio
       - ntfs-3g
       - exfat-fuse
       - exfat-utils
