@@ -11,6 +11,7 @@
       - texstudio-l10n 
       - texstudio
       - ntfs-3g
+      - dosfstools
       - exfat-fuse
       - exfat-utils
       - chromium
