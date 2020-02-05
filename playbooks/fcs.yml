@@ -1,0 +1,73 @@
+---
+- name: fcs
+  hosts: fcs
+  become: yes
+
+  vars:
+    realm: "smbdomain.fflch.usp.br"
+    cups_server: "ipp://cups.fflch.usp.br:631/printers/"
+    cups_printers:
+      - name: fcs_samsung_pb_k7500lx_proaluno
+        short: fcs
+        model: 'openprinting-ppds:0/ppd/openprinting/Samsung/PS/Samsung_K7600_Series.ppd'
+
+  tasks:
+
+    - name: proaluno role
+      include_role:
+        name: local.proaluno
+
+    - name: Corrige o timezone para America/Sao_Paulo
+      include_role:
+        name: adriagalin.timezone
+      vars:
+        ag_timezone: 'America/Sao_Paulo'
+
+    - name: infOpen.locales
+      include_role:
+        name: infOpen.locales
+      vars:
+        locales_to_configure:
+          - name: 'en_US.UTF-8'
+            modifier: 'UTF-8'
+          - name: 'pt_BR.UTF-8'
+            modifier: 'UTF-8'
+        locales_defaults:
+          LANG: 'pt_BR.UTF-8'
+          LC_CTYPE: 'pt_BR.UTF-8'
+          LANGUAGE: 'pt_BR.UTF-8'
+
+    - name: geerlingguy.ntp
+      include_role:
+        name: geerlingguy.ntp
+      vars:
+        ntp_timezone: 'America/Sao_Paulo'
+        ntp_servers:
+          - 143.107.72.180
+          - 143.107.72.181
+          - 143.107.72.182
+          - 143.107.72.183
+
+    - name: Configura resolv.conf para consultar DNSs no próprio samba
+      include_role:
+        name: blackstar257.resolv
+      vars:
+        resolv_conf_nameservers:
+          - 143.107.72.180
+          - 143.107.72.181
+          - 143.107.72.182
+          - 143.107.72.183
+        resolv_conf_search_domains:
+          - "{{ realm }}"
+
+    - name: fflch.domain-member
+      include_role:
+        name: fflch.domain-member
+      vars:
+        domain_member_realm: "{{ realm }}"
+        domain_member_samba_server: sambadc180
+        domain_member_password: "{{ lookup('passwordstore', 'sti/servidores/smbdomain/Administrator/password') }}"
+
+    - name: cmprescott.chrome
+      include_role:
+        name: cmprescott.chrome

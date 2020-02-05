@@ -1,3 +1,9 @@
+[fcs]
+linux008038319 ansible_host="10.184.0.223"
+linux084018286 ansible_host="10.184.0.000"
+linux008034900 ansible_host="10.184.0.227"
+linux008035802 ansible_host="10.184.0.161"
+
 [gh]
 linux084019240 ansible_host="10.184.0.102"
 linux084019269 ansible_host="10.184.0.103"
@@ -95,11 +101,15 @@ linux084019272 ansible_host="10.184.0.182"
 linux084019279 ansible_host="10.184.0.155"
 linux084019285 ansible_host="10.184.0.168"
 
-[letras:vars]
+[fcs:vars]
 ansible_connection=ssh
 ansible_user=root
 
 [gh:vars]
+ansible_connection=ssh
+ansible_user=root
+
+[letras:vars]
 ansible_connection=ssh
 ansible_user=root
 
