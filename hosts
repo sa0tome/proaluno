@@ -1,8 +1,15 @@
 [fcs]
+linux008038311 ansible_host="10.184.0.225"
+linux084019288 ansible_host="10.184.0.180"
+linux008038403 ansible_host="10.184.0.230"
+linux008034831 ansible_host="10.184.0.236"
+linux084019286 ansible_host="10.184.0.222"
+linux008038346 ansible_host="10.184.0.28"
+linux084019241 ansible_host="10.184.0.224"
 linux008038319 ansible_host="10.184.0.223"
-linux084018286 ansible_host="10.184.0.000"
 linux008034900 ansible_host="10.184.0.227"
 linux008035802 ansible_host="10.184.0.161"
+linux008038407 ansible_host="10.184.0.232"
 
 [gh]
 linux084019240 ansible_host="10.184.0.102"
