@@ -1,5 +1,6 @@
 [fcs]
 linux008038311 ansible_host="10.184.0.225"
+linux008019117 ansible_host="10.184.0.208"
 linux084019288 ansible_host="10.184.0.180"
 linux008038403 ansible_host="10.184.0.230"
 linux008034831 ansible_host="10.184.0.236"
