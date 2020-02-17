@@ -11,6 +11,11 @@ linux008038319 ansible_host="10.184.0.223"
 linux008034900 ansible_host="10.184.0.227"
 linux008035802 ansible_host="10.184.0.161"
 linux008038407 ansible_host="10.184.0.232"
+linux008038379 ansible_host="10.184.0.245"
+linux008034894 ansible_host="10.184.0.25"
+linux084019110 ansible_host="10.184.0.192"
+linux008038393 ansible_host="10.184.0.244"
+linux008038377 ansible_host="10.184.0.226"
 
 [gh]
 linux084019240 ansible_host="10.184.0.102"
