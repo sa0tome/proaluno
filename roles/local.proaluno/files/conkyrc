@@ -37,5 +37,5 @@ Pró-Aluno FFLCH
 $hr
 ${color grey}Logado(a) há: $color ${execi 60 /proaluno/timer.sh} 
 $hr
-${color grey}Impressões de hoje: $color${execi 60  wget -q -O- https://quotas.fflch.usp.br/pages/today/$(whoami); echo}
+${color grey}Impressões restantes hoje: $color${execi 60  expr 30 - $(wget -q -O- https://quotas.fflch.usp.br/pages/today/$(whoami)); echo}
 ]]
