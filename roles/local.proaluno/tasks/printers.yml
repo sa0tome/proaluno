@@ -21,11 +21,36 @@
     name: "avahi-daemon"
     purge: yes
 
+- name: Copy ppd for K7600_modificado.ppd
+  copy:
+    src: files/K7600_modificado.ppd
+    dest: /usr/share/cups/model/K7600_modificado.ppd
+    mode: '0755'
+
+- name: Copy ppd for Samsung_K7600_Series.ppd
+  copy:
+    src: files/Samsung_K7600_Series.ppd
+    dest: /usr/share/cups/model/Samsung_K7600_Series.ppd
+    mode: '0755'
+
+# for i in $(lpstat -p | awk '{print $2}'); do lpadmin -x $i; done
+- name: getting installed printers
+  shell: lpstat -p | awk '{print $2}'
+  register: installed_printers
+
+- name: removing installed printers
+  shell: lpadmin -x {{ item }}
+  with_items: "{{ installed_printers.stdout_lines }}"
+  when: proaluno_remove_printers
+
+# lpadmin -p impressora -v ipp://cups.fflch.usp.br:631/printers/let_samsung_pb_k7500lx_proaluno -m K7600.ppd -o printer-error-policy=abort-job -o sides=two-sided-long-edge -E
 - name: Install printers
   shell: >
-    lpadmin -p {{ item.short }}
+    /usr/sbin/lpadmin -p {{ item.short }}
     -v {{cups_server}}{{ item.name }}
     -m {{ item.model }}
     -o printer-error-policy=abort-job
     -o sides=two-sided-long-edge -E
+  args:
+    chdir: /usr/share/cups/model
   with_items: "{{ cups_printers }}"

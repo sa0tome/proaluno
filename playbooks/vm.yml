@@ -5,15 +5,37 @@
 
   vars:
     realm: "proaluno.usp.br"
+    cups_server: "ipp://cups.fflch.usp.br:631/printers/"
+    cups_printers:
+      - name: let_samsung_pb_k7500lx_proaluno
+        short: letras
+        model: 'openprinting-ppds:0/ppd/openprinting/Samsung/PS/Samsung_K7600_Series.ppd'
+      - name: fcs_samsung_pb_k7500lx_proaluno
+        short: fcs
+        model: 'openprinting-ppds:0/ppd/openprinting/Samsung/PS/Samsung_K7600_Series.ppd'
+      - name: gh_samsung_pb_k7500lx_proaluno
+        short: gh
+        model: 'openprinting-ppds:0/ppd/openprinting/Samsung/PS/Samsung_K7600_Series.ppd'
+
+      - name: let_samsung_pb_k7500lx_proaluno
+        short: letras_ppd
+        model: 'Samsung_K7600_Series.ppd'
+      - name: fcs_samsung_pb_k7500lx_proaluno
+        short: fcs_ppd
+        model: 'Samsung_K7600_Series.ppd'
+      - name: gh_samsung_pb_k7500lx_proaluno
+        short: gh_ppd
+        model: 'Samsung_K7600_Series.ppd'
 
   tasks:
     - name: proaluno role
       include_role:
         name: local.proaluno
       vars:
-        proaluno_deploy_printers: False
+        proaluno_deploy_printers: True
         proaluno_install_pacotes_debian: False
         proaluno_install_mate: True
+        proaluno_remove_printers: True
 
     - name: Corrige o timezone para America/Sao_Paulo
       include_role:
