@@ -27,6 +27,7 @@
 #    dest: /usr/share/cups/model/K7600_modificado.ppd
 #    mode: '0755'
 
+#### remover todas impressoras antes de instalar a nova
 # for i in $(lpstat -p | awk '{print $2}'); do lpadmin -x $i; done
 - name: getting installed printers
   shell: lpstat -p | awk '{print $2}'
@@ -37,6 +38,7 @@
   with_items: "{{ installed_printers.stdout_lines }}"
   when: proaluno_remove_printers
 
+#### Exemplo de instalação de uma impressora
 # lpadmin -p nome_impressora 
 #    -v ipp://cups.fflch.usp.br:631/printers/let_samsung_pb_k7500lx_proaluno 
 #    -m K7600.ppd -o printer-error-policy=abort-job 
