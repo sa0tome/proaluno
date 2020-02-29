@@ -17,15 +17,15 @@
         short: gh
         model: 'openprinting-ppds:0/ppd/openprinting/Samsung/PS/Samsung_K7600_Series.ppd'
 
-      - name: let_samsung_pb_k7500lx_proaluno
-        short: letras_ppd
-        model: 'Samsung_K7600_Series.ppd'
-      - name: fcs_samsung_pb_k7500lx_proaluno
-        short: fcs_ppd
-        model: 'Samsung_K7600_Series.ppd'
-      - name: gh_samsung_pb_k7500lx_proaluno
-        short: gh_ppd
-        model: 'Samsung_K7600_Series.ppd'
+#      - name: let_samsung_pb_k7500lx_proaluno
+#        short: letras_ppd
+#        model: 'Samsung_K7600_Series.ppd'
+#      - name: fcs_samsung_pb_k7500lx_proaluno
+#        short: fcs_ppd
+#        model: 'Samsung_K7600_Series.ppd'
+#      - name: gh_samsung_pb_k7500lx_proaluno
+#        short: gh_ppd
+#        model: 'Samsung_K7600_Series.ppd'
 
   tasks:
     - name: proaluno role

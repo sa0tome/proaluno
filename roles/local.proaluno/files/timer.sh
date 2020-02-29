@@ -13,4 +13,4 @@ IFS=: read hour min <<< "$new"
 sec_old=$(date -d "1970-01-01 $old_hour:$old_min:00" +%s)
 sec_new=$(date -d "1970-01-01 $hour:$min:00" +%s)
 
-echo "$(( (sec_new - sec_old) / 60)) minuto(s)"
+echo $(( (sec_new - sec_old) / 60))
