@@ -11,8 +11,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       host.vm.network :private_network,
         :ip => "192.168.8.201",
         :libvirt__network_name => "fflch",
-        :libvirt__netmask => '255.255.255.0',
-        :libvirt__host_ip => "192.168.8.1",
         :libvirt__forward_mode => "nat"
 
       host.vm.provider :libvirt do |v|
@@ -30,8 +28,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       host.vm.network :private_network,
         :ip => "192.168.8.202",
         :libvirt__network_name => "fflch",
-        :libvirt__netmask => '255.255.255.0',
-        :libvirt__host_ip => "192.168.8.1",
         :libvirt__forward_mode => "nat"
 
       host.vm.provider :libvirt do |v|
