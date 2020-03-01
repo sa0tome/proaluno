@@ -47,7 +47,14 @@ Provisionando o servidor samba com senha do Administrator Pr0Aluno123:
 
     ansible-playbook playbooks/samba.yml
 
-Subindo a VM:
+Provisionando a VM:
 
     ansible-playbook playbooks/vm.yml
+
+Criar um usuário no samba:
+
+    vagrant ssh samba
+    sudo samba-tool user create FULANO
+
+Agora é só rebootar a VM e logar na interface com usuário criado no samba.
 

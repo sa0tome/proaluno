@@ -59,6 +59,6 @@
         name: blackstar257.resolv
       vars:
         resolv_conf_nameservers:
-          - 10.20.30.5
+          - 192.168.8.201
         resolv_conf_search_domains:
           - "{{ sambadc_realm }}"
