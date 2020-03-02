@@ -9,23 +9,23 @@
     - hp-ppd
     - openprinting-ppds
 
-- name: Disable cups-browsed
-  systemd:
-    name: "cups-browsed"
-    state: stopped
-    enabled: no
-    masked: yes
+- name: Create a directory /usr/lib/cups/filter
+  file:
+    path: /usr/lib/cups/filter
+    state: directory
+    mode: '0755'
 
-- name: Remove avahi-daemon
-  apt:
-    name: "avahi-daemon"
-    purge: yes
+- name: Copy ppd for gstopdf17
+  copy:
+    src: files/gstopdf17
+    dest: /usr/lib/cups/filter/gstopdf17
+    mode: '0755'
 
-#- name: Copy ppd for K7600_modificado.ppd
-#  copy:
-#    src: files/K7600_modificado.ppd
-#    dest: /usr/share/cups/model/K7600_modificado.ppd
-#    mode: '0755'
+- name: Copy ppd for Samsung_K7600_Series_FFLCH.ppd
+  copy:
+    src: files/Samsung_K7600_Series_FFLCH.ppd
+    dest: /usr/share/cups/model/Samsung_K7600_Series_FFLCH.ppd
+    mode: '0755'
 
 #### remover todas impressoras antes de instalar a nova
 # for i in $(lpstat -p | awk '{print $2}'); do lpadmin -x $i; done
@@ -53,3 +53,15 @@
   args:
     chdir: /usr/share/cups/model
   with_items: "{{ cups_printers }}"
+
+- name: Disable cups-browsed
+  systemd:
+    name: "cups-browsed"
+    state: stopped
+    enabled: no
+    masked: yes
+
+- name: Remove avahi-daemon
+  apt:
+    name: "avahi-daemon"
+    purge: yes

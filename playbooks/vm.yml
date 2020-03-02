@@ -16,19 +16,11 @@
       - name: gh_samsung_pb_k7500lx_proaluno
         short: gh
         model: 'openprinting-ppds:0/ppd/openprinting/Samsung/PS/Samsung_K7600_Series.ppd'
-      - name: adm_samsung_pb_k7500lx_fin
-        short: fin
-        model: 'openprinting-ppds:0/ppd/openprinting/Samsung/PS/Samsung_K7600_Series.ppd'
 
-#      - name: let_samsung_pb_k7500lx_proaluno
-#        short: letras_ppd
-#        model: 'Samsung_K7600_Series.ppd'
-#      - name: fcs_samsung_pb_k7500lx_proaluno
-#        short: fcs_ppd
-#        model: 'Samsung_K7600_Series.ppd'
-#      - name: gh_samsung_pb_k7500lx_proaluno
-#        short: gh_ppd
-#        model: 'Samsung_K7600_Series.ppd'
+      - name: adm_samsung_pb_k7500lx_fin
+        short: adm_samsung_pb_k7500lx_fin
+        model: 'Samsung_K7600_Series_FFLCH.ppd'
+
     proaluno_check_quota: "http://quota.local.fflch.usp.br/"
 
   tasks:
