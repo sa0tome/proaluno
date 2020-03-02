@@ -1,5 +1,9 @@
+[wake]
+linux008038398 ansible_host="10.184.0.250"
+
 [fcs]
 linux008038398 ansible_host="10.184.0.250"
+linux008038378 ansible_host="10.184.0.204"
 linux008038391 ansible_host="10.184.0.249"
 linux008038311 ansible_host="10.184.0.225"
 linux008019117 ansible_host="10.184.0.208"
@@ -27,7 +31,6 @@ linux008035774 ansible_host="10.184.0.234"
 linux008035775 ansible_host="10.184.0.237"
 linux008034833 ansible_host="10.184.0.239"
 linux008035770 ansible_host="10.184.0.240"
-linux008034828 ansible_host="10.184.0.247"
 linux008038380 ansible_host="10.184.0.238"
 
 [gh]
@@ -128,6 +131,10 @@ linux084019279 ansible_host="10.184.0.155"
 linux084019285 ansible_host="10.184.0.168"
 
 [fcs:vars]
+ansible_connection=ssh
+ansible_user=root
+
+[wake:vars]
 ansible_connection=ssh
 ansible_user=root
 

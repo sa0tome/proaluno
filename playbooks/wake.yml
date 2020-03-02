@@ -1,0 +1,13 @@
+---
+- name: wake
+  hosts: wake
+  gather_facts: no
+  become: yes
+  
+  tasks:
+
+    - name: Send a Wake-on-LAN packet
+      wakeonlan:
+        mac: 'E0:CB:4E:AC:27:E3'
+        broadcast: 10.184.3.255
+      delegate_to: 10.184.0.1
