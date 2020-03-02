@@ -8,4 +8,10 @@
   copy:
     src: files/lightdm-gtk-greeter.conf
     dest: /etc/lightdm/lightdm-gtk-greeter.conf
-    mode: '0755'
+    mode: '0644'
+
+- name: Copy /etc/lightdm/lightdm.conf
+  copy:
+    src: files/lightdm.conf
+    dest: /etc/lightdm/lightdm.conf
+    mode: '0644'

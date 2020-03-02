@@ -148,8 +148,8 @@ ansible_user=root
 
 ######### Ambiente de desenvolvimento ######### 
 [vagrant]
-samba ansible_host="10.20.30.5"
-vm ansible_host="10.20.30.6"
+samba ansible_host="192.168.8.201"
+vm ansible_host="192.168.8.202"
 
 [vagrant:vars]
 ansible_user="vagrant"

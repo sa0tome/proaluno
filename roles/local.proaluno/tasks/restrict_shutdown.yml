@@ -1,0 +1,5 @@
+- name: Copy restrict-login-powermgmt.pkla
+  copy:
+    src: files/restrict-login-powermgmt.pkla
+    dest: /etc/polkit-1/localauthority/50-local.d/restrict-login-powermgmt.pkla
+    mode: '0644'

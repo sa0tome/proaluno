@@ -5,7 +5,7 @@
 
   vars:
     realm: "proaluno.usp.br"
-    cups_server: "ipp://cups.fflch.usp.br:631/printers/"
+    cups_server: "ipp://192.168.8.43:631/printers/"
     cups_printers:
       - name: let_samsung_pb_k7500lx_proaluno
         short: letras
@@ -16,16 +16,20 @@
       - name: gh_samsung_pb_k7500lx_proaluno
         short: gh
         model: 'openprinting-ppds:0/ppd/openprinting/Samsung/PS/Samsung_K7600_Series.ppd'
+      - name: adm_samsung_pb_k7500lx_fin
+        short: fin
+        model: 'openprinting-ppds:0/ppd/openprinting/Samsung/PS/Samsung_K7600_Series.ppd'
 
-      - name: let_samsung_pb_k7500lx_proaluno
-        short: letras_ppd
-        model: 'Samsung_K7600_Series.ppd'
-      - name: fcs_samsung_pb_k7500lx_proaluno
-        short: fcs_ppd
-        model: 'Samsung_K7600_Series.ppd'
-      - name: gh_samsung_pb_k7500lx_proaluno
-        short: gh_ppd
-        model: 'Samsung_K7600_Series.ppd'
+#      - name: let_samsung_pb_k7500lx_proaluno
+#        short: letras_ppd
+#        model: 'Samsung_K7600_Series.ppd'
+#      - name: fcs_samsung_pb_k7500lx_proaluno
+#        short: fcs_ppd
+#        model: 'Samsung_K7600_Series.ppd'
+#      - name: gh_samsung_pb_k7500lx_proaluno
+#        short: gh_ppd
+#        model: 'Samsung_K7600_Series.ppd'
+    proaluno_check_quota: "http://quota.local.fflch.usp.br/"
 
   tasks:
     - name: proaluno role
@@ -63,14 +67,14 @@
       vars:
         ntp_timezone: 'America/Sao_Paulo'
         ntp_servers:
-          - 10.20.30.5
+          - 192.168.8.201
 
     - name: Configura resolv.conf para consultar DNSs no próprio samba
       include_role:
         name: blackstar257.resolv
       vars:
         resolv_conf_nameservers:
-          - 10.20.30.5
+          - 192.168.8.201
         resolv_conf_search_domains:
           - "{{ realm }}"
 
@@ -85,4 +89,10 @@
     - name: cmprescott.chrome
       include_role:
         name: cmprescott.chrome
+
+    # Essa task é só para o ambiente de dev
+    - name: servidor de impressão dev
+      lineinfile:
+        path: /etc/hosts
+        line: "192.168.8.92 quotas.local.fflch.usp.br"
 

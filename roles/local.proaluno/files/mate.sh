@@ -1,12 +1,3 @@
 #!/bin/bash
 
-#dconf load / < /proaluno/dconf-dump.ini
-
-#mate-settings-daemon --replace &
-#mate-panel --replace &
-#marco --no-composite --replace &
-#killall mate-volume-control-applet
-#killall caja
-#mate-volume-control-applet
-
-conky -d -p 15
+conky -d -p 10

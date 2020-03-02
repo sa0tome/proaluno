@@ -6,8 +6,8 @@
       - acct
 
 - name: Copy .conkyrc
-  copy:
-    src: files/conkyrc
+  template:
+    src: templates/conkyrc
     dest: /etc/skel/.conkyrc
     mode: '0755'
 
