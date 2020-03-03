@@ -130,6 +130,9 @@ linux084019272 ansible_host="10.184.0.182"
 linux084019279 ansible_host="10.184.0.155"
 linux084019285 ansible_host="10.184.0.168"
 
+[sti]
+linux008038368 ansible_host="10.64.0.73"
+
 [fcs:vars]
 ansible_connection=ssh
 ansible_user=root
@@ -143,6 +146,10 @@ ansible_connection=ssh
 ansible_user=root
 
 [letras:vars]
+ansible_connection=ssh
+ansible_user=root
+
+[sti:vars]
 ansible_connection=ssh
 ansible_user=root
 
