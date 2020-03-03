@@ -28,12 +28,11 @@
 - import_tasks: lightdm.yml
 - import_tasks: restrict_shutdown.yml
 - import_tasks: remove_screensaver.yml
+- import_tasks: make_ssh_folder.yml
+- import_tasks: update_keys.yml
 
 - name: workaround - pam_mkhomedir.so umask=0077 não está rolando
   cron:
     name: "fix permissions"
     minute: "*/5"
     job: "chmod -R 0700 /home/*"
-
-
-
