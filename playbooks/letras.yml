@@ -8,7 +8,7 @@
     cups_server: "ipp://cups.fflch.usp.br:631/printers/"
     cups_printers:
       - name: let_samsung_pb_k7500lx_proaluno
-        short: letras
+        short: impressora
         model: 'openprinting-ppds:0/ppd/openprinting/Samsung/PS/Samsung_K7600_Series.ppd'
 
   tasks:

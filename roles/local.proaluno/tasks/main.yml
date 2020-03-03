@@ -26,6 +26,8 @@
 - import_tasks: proaluno_init.yml
 - import_tasks: conky.yml
 - import_tasks: lightdm.yml
+- import_tasks: restrict_shutdown.yml
+- import_tasks: remove_screensaver.yml
 
 - name: workaround - pam_mkhomedir.so umask=0077 não está rolando
   cron:
