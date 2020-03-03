@@ -64,4 +64,5 @@
 - name: Remove avahi-daemon
   apt:
     name: "avahi-daemon"
+    state: absent
     purge: yes
