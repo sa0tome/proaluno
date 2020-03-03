@@ -57,6 +57,12 @@
     dest: /etc/X11/Xsession.d/10dconf_override
     mode: '0644'
 
+- name: Copy keyboard configuration
+  copy:
+    src: files/keyboard
+    dest: /etc/default/keyboard
+    mode: '0644'
+
 - name: Copy countdown.sh
   copy:
     src: files/countdown.sh
