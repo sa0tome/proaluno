@@ -6,6 +6,18 @@
       - mate-menu
       - dconf-cli
 
+- name: Remove screensaver - workaround
+  apt:
+    name: "mate-screensaver"
+    state: absent
+    purge: yes
+
+- name: Remove screensaver - workaround
+  apt:
+    name: "mate-screensaver-common"
+    state: absent
+    purge: yes
+
 - name: Copy /etc/skel/.config
   copy:
     src: files/mate/dot_config/

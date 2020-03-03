@@ -22,6 +22,7 @@ alert()
 
 do_logout()
 {
+    # pkill is better than "mate-session-save --force-logout"?
     pkill -KILL -u $(whoami)
 }
 

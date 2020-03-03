@@ -1,4 +1,5 @@
 - name: Remove screensaver
   apt:
     name: "mate-screensaver"
+    state: absent
     purge: yes
