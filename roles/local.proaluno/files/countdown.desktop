@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Application
+Exec="/proaluno/countdown.sh"
+Hidden=false
+X-MATE-Autostart-enabled=yes
+Name=Countdown
+Comment=Logout user after two hours
