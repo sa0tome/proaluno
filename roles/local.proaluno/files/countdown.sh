@@ -34,7 +34,8 @@ main()
     sleep "${sleep_until}m"
     alert &
     sleep "${ALERT_WHEN_REMAINING}m"
-    do_logout
+    # Ainda com problema
+    #do_logout
 }
 
 main
