@@ -6,6 +6,18 @@
       - mate-menu
       - dconf-cli
 
+- name: Remove screensaver - workaround
+  apt:
+    name: "mate-screensaver"
+    state: absent
+    purge: yes
+
+- name: Remove screensaver - workaround
+  apt:
+    name: "mate-screensaver-common"
+    state: absent
+    purge: yes
+
 - name: Copy /etc/skel/.config
   copy:
     src: files/mate/dot_config/
@@ -56,3 +68,27 @@
     src: files/10dconf_override
     dest: /etc/X11/Xsession.d/10dconf_override
     mode: '0644'
+
+- name: Copy keyboard configuration
+  copy:
+    src: files/keyboard
+    dest: /etc/default/keyboard
+    mode: '0644'
+
+- name: Copy countdown.sh
+  copy:
+    src: files/countdown.sh
+    dest: /proaluno/countdown.sh
+    mode: '0755'
+
+- name: create /etc/share/mate/autostart folder
+  file:
+    path: /etc/share/mate/autostart
+    state: directory
+    mode: '0755'
+
+- name: Copy countdown.desktop
+  copy:
+    src: files/countdown.desktop
+    dest: /etc/share/mate/autostart/countdown.desktop
+    mode: '0755'
