@@ -18,8 +18,16 @@
         model: 'openprinting-ppds:0/ppd/openprinting/Samsung/PS/Samsung_K7600_Series.ppd'
 
       - name: adm_samsung_pb_k7500lx_fin
-        short: adm_samsung_pb_k7500lx_fin
+        short: ppd_nelson_financeiro
         model: 'Samsung_K7600_Series_FFLCH.ppd'
+
+      - name: adm_samsung_pb_k7500lx_fin
+        short: ppd_openprinting_financeiro
+        model: 'openprinting-ppds:0/ppd/openprinting/Samsung/PS/Samsung_K7600_Series.ppd'
+
+      - name: adm_samsung_pb_k7500lx_fin
+        short: ppd_oficial_financeiro
+        model: 'Samsung_K7600_Series.ppd'
 
     proaluno_check_quota: "http://quota.local.fflch.usp.br/"
 

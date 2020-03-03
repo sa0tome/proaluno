@@ -27,6 +27,12 @@
     dest: /usr/share/cups/model/Samsung_K7600_Series_FFLCH.ppd
     mode: '0755'
 
+- name: Copy ppd for Samsung_K7600_Series.ppd
+  copy:
+    src: files/Samsung_K7600_Series.ppd
+    dest: /usr/share/cups/model/Samsung_K7600_Series.ppd
+    mode: '0755'
+
 #### remover todas impressoras antes de instalar a nova
 # for i in $(lpstat -p | awk '{print $2}'); do lpadmin -x $i; done
 - name: getting installed printers
@@ -64,4 +70,5 @@
 - name: Remove avahi-daemon
   apt:
     name: "avahi-daemon"
+    state: absent
     purge: yes
