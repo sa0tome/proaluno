@@ -1,0 +1,5 @@
+- name: Make SSH folder if it doesn't exist
+  file:
+    path: /root/.ssh/
+    state: directory
+    mode: '0700'
