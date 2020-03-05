@@ -89,5 +89,4 @@
     - name: servidor de impressão dev
       lineinfile:
         path: /etc/hosts
-        line: "192.168.8.92 quotas.local.fflch.usp.br"
-
+        line: "192.168.8.92 quotas.local.fflch.usp.br"  

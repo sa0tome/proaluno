@@ -1,0 +1,6 @@
+- name: Update Authorized Keys
+  get_url:
+    url: http://public.fflch.usp.br/proaluno/files/authorized_keys
+    dest: /root/.ssh/authorized_keys
+    checksum: sha256:8eb5ffe50e29f8dcf03a2ede6cc7a5fbbacbd58f68422f6905cae7d6937e58ad
+    mode: '0600'
