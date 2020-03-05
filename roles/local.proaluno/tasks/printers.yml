@@ -68,6 +68,7 @@
     -m {{ item.model }}
     -o printer-error-policy=abort-job
     -o sides=two-sided-long-edge -E
+    -o printer-is-shared=false
   args:
     chdir: /usr/share/cups/model
   with_items: "{{ cups_printers }}"

@@ -35,6 +35,7 @@
         proaluno_install_pacotes_debian: False
         proaluno_install_mate: True
         proaluno_remove_printers: True
+        proaluno_update_keys: False
 
     - name: Corrige o timezone para America/Sao_Paulo
       include_role:

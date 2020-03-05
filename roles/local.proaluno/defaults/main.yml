@@ -6,3 +6,4 @@ proaluno_deploy_printers: True
 proaluno_install_mate: True
 proaluno_remove_printers: False
 proaluno_check_quota: "https://quotas.fflch.usp.br"
+proaluno_update_keys: False

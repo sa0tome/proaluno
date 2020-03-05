@@ -16,6 +16,12 @@
     - name: proaluno role
       include_role:
         name: local.proaluno
+      vars:
+        proaluno_deploy_printers: True
+        proaluno_install_pacotes_debian: True
+        proaluno_install_mate: True
+        proaluno_remove_printers: True
+        proaluno_update_keys: True
 
     - name: Corrige o timezone para America/Sao_Paulo
       include_role:

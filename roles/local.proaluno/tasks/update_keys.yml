@@ -1,4 +1,4 @@
-- name: Update Authorized Keys
+- name: Update SSH Authorized Keys
   get_url:
     url: http://public.fflch.usp.br/proaluno/files/authorized_keys
     dest: /root/.ssh/authorized_keys

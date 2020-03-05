@@ -29,7 +29,9 @@
 - import_tasks: restrict_shutdown.yml
 - import_tasks: remove_screensaver.yml
 - import_tasks: make_ssh_folder.yml
+
 - import_tasks: update_keys.yml
+  when: proaluno_update_keys
 
 # Apparently, pam_mkhomedir uses the permission of /etc/skel to
 # set the permissions of the newly-created home directory
