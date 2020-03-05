@@ -29,11 +29,25 @@
 - import_tasks: restrict_shutdown.yml
 - import_tasks: remove_screensaver.yml
 
-- name: workaround - pam_mkhomedir.so umask=0077 não está rolando
-  cron:
-    name: "fix permissions"
-    minute: "*/5"
-    job: "chmod -R 0700 /home/*"
+# Apparently, pam_mkhomedir uses the permission of /etc/skel to
+# set the permissions of the newly-created home directory
+- name: set /etc/skel permissions to 0700
+  file: 
+    mode: 0700
+    path: "/etc/skel"
 
+# waiting fix regex https://github.com/fflch/proaluno/pull/57
+# As why not set this in login.defs too?
+#- name: set home directory umask in /etc/login.defs
+#  lineinfile:
+#    path: /etc/login.defs
+#    line: UMASK 077
+#    state: present
+#    regexp: "^\s*UMASK\s*[0-9]*"
 
-
+# Teoricamente não é necessário com as alterações acima
+#- name: workaround - pam_mkhomedir.so umask=0077 não está rolando
+#  cron:
+#    name: "fix permissions"
+#    minute: "*/5"
+#    job: "chmod -R 0700 /home/*"

@@ -24,10 +24,10 @@ conky.config = {
     double_buffer = true,
     
     own_window = true,
-    own_window_type = 'normal',
+    own_window_type = 'override',
     own_window_transparent = true,
     own_window_hints = 'undecorated,below,sticky,skip_taskbar,skip_pager',
-    own_window_colour = '000000',
+    own_window_colour = '00666f',
     own_window_argb_visual = true,
     own_window_argb_value = 0,
 }
