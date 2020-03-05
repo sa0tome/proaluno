@@ -21,17 +21,29 @@
     dest: /usr/lib/cups/filter/gstopdf17
     mode: '0755'
 
-- name: Copy ppd for Samsung_K7600_Series_FFLCH.ppd
-  copy:
-    src: files/Samsung_K7600_Series_FFLCH.ppd
-    dest: /usr/share/cups/model/Samsung_K7600_Series_FFLCH.ppd
-    mode: '0755'
-
 - name: Copy ppd for Samsung_K7600_Series.ppd
   copy:
     src: files/Samsung_K7600_Series.ppd
     dest: /usr/share/cups/model/Samsung_K7600_Series.ppd
     mode: '0755'
+
+- name: Copy ppd for Samsung_K7600_Series_FFLCH_pdf_direto.ppd
+  copy:
+    src: files/Samsung_K7600_Series_FFLCH_pdf_direto.ppd
+    dest: /usr/share/cups/model/Samsung_K7600_Series_FFLCH_pdf_direto.ppd
+    mode: '0755'
+
+- name: Copy ppd for Samsung_K7600_Series_FFLCH_pdf_processado.ppd
+  copy:
+    src: files/Samsung_K7600_Series_FFLCH_pdf_processado.ppd
+    dest: /usr/share/cups/model/Samsung_K7600_Series_FFLCH_pdf_processado.ppd
+    mode: '0755'
+
+- name: Copy usp.types
+  copy:
+    src: files/usp.types
+    dest: /etc/cups/usp.types
+    mode: '0644'
 
 #### remover todas impressoras antes de instalar a nova
 # for i in $(lpstat -p | awk '{print $2}'); do lpadmin -x $i; done

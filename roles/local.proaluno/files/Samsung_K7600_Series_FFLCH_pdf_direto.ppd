@@ -39,9 +39,8 @@
 *JCLToPSInterpreter: "@PJL ENTER LANGUAGE = POSTSCRIPT<0D0A>"
 *JCLEnd: "<1B>%-12345X"
 
-*% Arquivos sem pré-processamento enviados diretamente para este servidor
-*cupsFilter2: "application/vnd.cups-pdf application/pdf 10 gstopdf17"
-*cupsFilter2: "application/vnd.cups-raster image/urf 50 rastertopwg"
+*cupsFilter2: "application/vnd.cups-pdf application/prs.usp-samsung-pdf 10 -"
+*cupsFilter2: "image/urf image/prs.usp-samsung-raster 0 -"
 
 *% =========================================================
 *% Installable Options

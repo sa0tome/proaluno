@@ -7,27 +7,22 @@
     realm: "proaluno.usp.br"
     cups_server: "ipp://192.168.8.43:631/printers/"
     cups_printers:
-      - name: let_samsung_pb_k7500lx_proaluno
-        short: letras
-        model: 'openprinting-ppds:0/ppd/openprinting/Samsung/PS/Samsung_K7600_Series.ppd'
-      - name: fcs_samsung_pb_k7500lx_proaluno
-        short: fcs
-        model: 'openprinting-ppds:0/ppd/openprinting/Samsung/PS/Samsung_K7600_Series.ppd'
-      - name: gh_samsung_pb_k7500lx_proaluno
-        short: gh
-        model: 'openprinting-ppds:0/ppd/openprinting/Samsung/PS/Samsung_K7600_Series.ppd'
 
       - name: adm_samsung_pb_k7500lx_fin
-        short: ppd_nelson_financeiro
+        short: impressora
+        model: 'Samsung_K7600_Series_FFLCH_pdf_direto.ppd'
+
+      - name: adm_samsung_pb_k7500lx_fin
+        short: impressora_lenta
+        model: 'Samsung_K7600_Series_FFLCH_pdf_processado.ppd'
+
+      - name: adm_samsung_pb_k7500lx_fin
+        short: impressora_ppd_official
         model: 'Samsung_K7600_Series_FFLCH.ppd'
 
       - name: adm_samsung_pb_k7500lx_fin
-        short: ppd_openprinting_financeiro
+        short: impressora_openprinting
         model: 'openprinting-ppds:0/ppd/openprinting/Samsung/PS/Samsung_K7600_Series.ppd'
-
-      - name: adm_samsung_pb_k7500lx_fin
-        short: ppd_oficial_financeiro
-        model: 'Samsung_K7600_Series.ppd'
 
     proaluno_check_quota: "http://quota.local.fflch.usp.br/"
 
