@@ -15,28 +15,10 @@
     state: directory
     mode: '0755'
 
-- name: Copy ppd for gstopdf17
+- name: Copy gstopdf17
   copy:
     src: files/gstopdf17
     dest: /usr/lib/cups/filter/gstopdf17
-    mode: '0755'
-
-- name: Copy ppd for Samsung_K7600_Series.ppd
-  copy:
-    src: files/Samsung_K7600_Series.ppd
-    dest: /usr/share/cups/model/Samsung_K7600_Series.ppd
-    mode: '0755'
-
-- name: Copy ppd for Samsung_K7600_Series_FFLCH_pdf_direto.ppd
-  copy:
-    src: files/Samsung_K7600_Series_FFLCH_pdf_direto.ppd
-    dest: /usr/share/cups/model/Samsung_K7600_Series_FFLCH_pdf_direto.ppd
-    mode: '0755'
-
-- name: Copy ppd for Samsung_K7600_Series_FFLCH_pdf_processado.ppd
-  copy:
-    src: files/Samsung_K7600_Series_FFLCH_pdf_processado.ppd
-    dest: /usr/share/cups/model/Samsung_K7600_Series_FFLCH_pdf_processado.ppd
     mode: '0755'
 
 - name: Copy usp.types
@@ -44,6 +26,25 @@
     src: files/usp.types
     dest: /etc/cups/usp.types
     mode: '0644'
+
+- name: Copy lpoptions
+  copy:
+    src: files/lpoptions
+    dest: /etc/cups/lpoptions
+    mode: '0644'
+
+- name: Copy ppds
+  copy:
+    src: "files/ppds/{{item}}"
+    dest: "/usr/share/cups/model/{{item}}"
+    mode: '0755'
+  loop:
+    - K7600_direto_simplex.ppd
+    - K7600_direto_duplex.ppd
+    - K7600_direto_duplex_borda_menor.ppd
+    - K7600_processado_simplex.ppd
+    - K7600_processado_duplex.ppd
+    - K7600_processado_duplex_borda_menor.ppd
 
 #### remover todas impressoras antes de instalar a nova
 # for i in $(lpstat -p | awk '{print $2}'); do lpadmin -x $i; done
@@ -55,6 +56,7 @@
   shell: lpadmin -x {{ item }}
   with_items: "{{ installed_printers.stdout_lines }}"
   when: proaluno_remove_printers
+  ignore_errors: True
 
 #### Exemplo de instalação de uma impressora
 # lpadmin -p nome_impressora 
@@ -63,22 +65,28 @@
 #    -o sides=two-sided-long-edge -E
 - name: Install printers
   shell: >
-    /usr/sbin/lpadmin -p {{ item.short }}
-    -v {{cups_server}}{{ item.name }}
+    /usr/sbin/lpadmin -p {{ item.name }}
+    -v {{ item.device }}
     -m {{ item.model }}
     -o printer-error-policy=abort-job
-    -o sides=two-sided-long-edge -E
     -o printer-is-shared=false
+    -o PageSize=A4
+    -o Media=A4
+    - -E
+# lpadmin -E option forces encryption when connecting to the server
   args:
     chdir: /usr/share/cups/model
-  with_items: "{{ cups_printers }}"
+  loop: "{{ cups_printers }}"
 
-- name: Disable cups-browsed
+- name: Disable services
   systemd:
-    name: "cups-browsed"
+    name: "{{item}}"
     state: stopped
     enabled: no
     masked: yes
+  loop:
+    - cups-browsed
+#    - avahi-daemon
 
 - name: Remove avahi-daemon
   apt:

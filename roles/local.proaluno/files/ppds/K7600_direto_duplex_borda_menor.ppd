@@ -39,6 +39,9 @@
 *JCLToPSInterpreter: "@PJL ENTER LANGUAGE = POSTSCRIPT<0D0A>"
 *JCLEnd: "<1B>%-12345X"
 
+*cupsFilter2: "application/vnd.cups-pdf application/prs.usp-samsung-pdf 10 -"
+*cupsFilter2: "image/urf image/prs.usp-samsung-raster 0 -"
+
 *% =========================================================
 *% Installable Options
 *% =========================================================  
@@ -213,7 +216,7 @@
 *% =========================================================
 *OpenUI *Duplex/Two-sided:  PickOne
 *OrderDependency: 60 AnySetup *Duplex
-*DefaultDuplex: DuplexNoTumble
+*DefaultDuplex: DuplexTumble
 *Duplex None/None: " <</Duplex false>> setpagedevice"
 *Duplex DuplexNoTumble/Long Edge: "
     <</Duplex true /Tumble false>> setpagedevice"

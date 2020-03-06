@@ -39,17 +39,8 @@
 *JCLToPSInterpreter: "@PJL ENTER LANGUAGE = POSTSCRIPT<0D0A>"
 *JCLEnd: "<1B>%-12345X"
 
-*% Arquivos sem pré-processamento enviados diretamente para este servidor
-*cupsFilter2: "application/vnd.cups-pdf application/pdf 10 -"
-*cupsFilter2: "application/vnd.cups-raster image/urf 50 rastertopwg"
-
-*% Arquivos prontos para impressão enviados por máquinas Windows
-*cupsFilter2: "application/oxps application/oxps 0 -"
-*cupsFilter2: "application/vnd.ms-xpsdocument application/vnd.ms-xpsdocument 0 -"
-
-*% Arquivos pré-processados por outra instância do CUPS prontos para impressão
-*cupsFilter2: "application/prs.usp-samsung-pdf application/pdf 0 -"
-*cupsFilter2: "image/prs.usp-samsung-raster image/urf 0 -"
+*cupsFilter2: "application/vnd.cups-pdf application/prs.usp-samsung-pdf 10 -"
+*cupsFilter2: "image/urf image/prs.usp-samsung-raster 0 -"
 
 *% =========================================================
 *% Installable Options
@@ -225,7 +216,7 @@
 *% =========================================================
 *OpenUI *Duplex/Two-sided:  PickOne
 *OrderDependency: 60 AnySetup *Duplex
-*DefaultDuplex: DuplexNoTumble
+*DefaultDuplex: None
 *Duplex None/None: " <</Duplex false>> setpagedevice"
 *Duplex DuplexNoTumble/Long Edge: "
     <</Duplex true /Tumble false>> setpagedevice"
