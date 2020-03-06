@@ -86,3 +86,9 @@
     src: files/check_quotas.sh
     dest: /proaluno/check_quotas.sh
     mode: '0755'
+    
+- name: Copy quotas.desktop
+  copy:
+    src: files/quotas.desktop
+    dest: '/etc/skel/Área de trabalho/quotas.desktop'
+    mode: '0755'
