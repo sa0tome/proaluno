@@ -3,51 +3,65 @@
 MAX_LOGON_TIME=120
 ALERT_WHEN_REMAINING=5
 
-ME=`basename "$0"`
+# Let's be nice :)
+renice 19 $$
 
-pidlist=""
+# Bash normalmente ignora alguns sinais, pelo menos em se tratando
+# de shells interativos. Vamos garantir que este script termine
+# com qualquer sinal razoável. Vamos também garantir que do_logout
+# seja executada até o fim sem interrupções.
+exiting=no
+cleanexit()
+{
+    # Desnecessário, mas pode evitar problemas e impede que o usuário
+    # mate facilmente este script para permanecer logado por mais tempo.
+    if [ $exiting = "no" ]; then
+        do_logout
+    fi
+}
+
+trap cleanexit TERM HUP INT QUIT
+
 
 # "$$" expands to the PID of the current shell. However, in subshells
-# it expands to the PID of the *parent* shell. This is a trick to get
+# it expands to the PID of the *parent* shell. So, we use a trick to get
 # the actual PID of the subshell: start a sub-subshell and get the PID
 # of its parent. If the code is not executed in a subshell, both will
-# be the same, and that is ok.
-dopidlist()
+# be the same, and that is ok. findmypids() and updatepidlist() are
+# separate funcions to make sure we do not screw this up.
+pidlist=""
+findmypids()
 {
     myrealpid=$(exec sh -c 'echo "$PPID"')
 
     pgrep -v -u `whoami` '^\(grep\|pgrep\|whoami\)' | grep -E -v "\b$$\b|\b$myrealpid\b"
 }
 
-mypids()
+updatepidlist()
 {
-    # Não dá para excluir o próprio pgrep/pkill da lista de programas
-    # encontrados por pgrep/pkill; vamos fazer manualmente.
-
-    pidlist="$(dopidlist)"
-    # Já excluído em dopitlist, mas vamos garantir
+    pidlist="$(findmypids)"
+    # Já excluído em findmypids, mas vamos garantir
     pidlist="$(echo "$pidlist" | grep -v "\b$$\b")"
 }
 
-# Este script pode não ser morto no fim da sessão; no começo
-# da próxima, tentamos matar o sobrevivente anterior
-cleanup()
-{
-    for pid in `pgrep $ME`; do
-        if [ $pid -ne $$ ]; then
-            kill $pid
-        fi
-    done
-}
 
 alert()
 {
-    gdialog --print-maxsize --msgbox \
-    "Seu tempo está acabando, lembre-se que seus dados são apagados no logout!"
+zenity --warning --no-wrap --text \
+'<span size="x-large" weight="bold">
+     Seu tempo está acabando!     
+
+     Lembre-se que seus dados     
+     são apagados no logout!     
+</span>'
 }
+
 
 do_logout()
 {
+    # Se recebermos um sinal enquanto do_logout é executada, ignoramos
+    exiting=yes
+
     # Simplesmente fazer "pkill -KILL -u $(whoami)" pode fazer o pkill
     # matar a si mesmo antes de matar todos os processos. Vamos fazer
     # isso com mais cuidado.
@@ -58,15 +72,15 @@ do_logout()
     # Esperamos um pouco...
     local count=0
     local active=10 # Qualquer coisa, só para entrar no laço
-    while [ $count -lt 10 -a $active -gt 0 ]; do
+    while [ $count -lt 15 -a $active -gt 0 ]; do
         sleep 1
         count=$(expr $count + 1)
-	mypids
+	updatepidlist
         active=$(echo "$pidlist" | wc -l)
     done
 
     # Se sobrou alguém, matamos na marra
-    mypids
+    updatepidlist
     active=$(echo "$pidlist" | wc -l)
     if [ $active -ne 0 ]; then
         kill -KILL $pidlist
@@ -79,12 +93,28 @@ do_logout()
 
 main()
 {
-    local sleep_until=$(expr $MAX_LOGON_TIME - $ALERT_WHEN_REMAINING)
+    # Não é boa ideia fazer algo como "sleep 120m"; se o usuário
+    # encerrar a sessão antes de duas horas, este script vai
+    # esperar o final de sleep antes de parar a execução. Talvez
+    # isso não tenha consequências ruins, mas vamos evitar.
 
-    cleanup
-    sleep "${sleep_until}m"
+    local start=$(date +%s)
+    local warning=$(date --date "now + $MAX_LOGON_TIME minutes - $ALERT_WHEN_REMAINING minutes" +%s)
+    local finish=$(date --date "now + $MAX_LOGON_TIME minutes" +%s)
+
+    local now=$start
+    while [ $now -lt $warning ]; do
+        sleep 10
+	now=$(date +%s)
+    done
+
     alert &
-    sleep "${ALERT_WHEN_REMAINING}m"
+
+    while [ $now -lt $finish ]; do
+        sleep 10
+	now=$(date +%s)
+    done
+
     do_logout
 }
 
