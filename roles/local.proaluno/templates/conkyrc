@@ -36,6 +36,5 @@ conky.text = [[
 Pró-Aluno FFLCH
 $hr
 ${color grey}Logado(a) há: $color ${execi 60 /proaluno/timer.sh} min
-$hr
-${color grey}Impressões restantes hoje: $color${execi 60  expr 30 - $(wget -q -O- {{proaluno_check_quota}}/pages/today/$(whoami)); echo}
+
 ]]
