@@ -5,11 +5,33 @@
 
   vars:
     realm: "smbdomain.fflch.usp.br"
-    cups_server: "ipp://cups.fflch.usp.br:631/printers/"
+    cups_server: "ipp://cups.fflch.usp.br:631/printers"
+    sala: "proaluno_letras_"
     cups_printers:
-      - name: adm_samsung_pb_k7500lx_fin
-        short: impressora
-        model: 'openprinting-ppds:0/ppd/openprinting/Samsung/PS/Samsung_K7600_Series.ppd'
+
+      - name: frente_e_verso_borda_maior
+        device: "{{cups_server}}/{{sala}}duplex"
+        model: 'K7600_direto_duplex.ppd'
+
+      - name: frente_e_verso_borda_menor
+        device: "{{cups_server}}/{{sala}}duplex_borda_menor"
+        model: 'K7600_direto_duplex_borda_menor.ppd'
+
+      - name: somente_frente
+        device: "{{cups_server}}/{{sala}}simplex"
+        model: 'K7600_direto_simplex.ppd'
+
+      - name: lento_frente_e_verso_borda_maior
+        device: "{{cups_server}}/{{sala}}duplex"
+        model: 'K7600_processado_duplex.ppd'
+
+      - name: lento_frente_e_verso_borda_menor
+        device: "{{cups_server}}/{{sala}}duplex_borda_menor"
+        model: 'K7600_processado_duplex_borda_menor.ppd'
+
+      - name: lento_somente_frente
+        device: "{{cups_server}}/{{sala}}simplex"
+        model: 'K7600_processado_simplex.ppd'
 
   tasks:
 
