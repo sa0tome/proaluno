@@ -48,6 +48,10 @@
 
 #### remover impressoras antes de instalar a nova
 # for i in $(lpstat -p | awk '{print $2}'); do lpadmin -x $i; done
+- name: getting installed printers
+  shell: lpstat -p | awk '{print $2}'
+  register: installed_printers
+
 - name: Initialize an empty list for our printer_to_keep
   set_fact:
     printers_to_keep: []
@@ -56,10 +60,6 @@
   set_fact:
     printers_to_keep: "{{ printers_to_keep + [item.name] }}"
   loop: "{{ cups_printers }}"
-
-- name: getting installed printers
-  shell: lpstat -p | awk '{print $2}'
-  register: installed_printer
 
 - name: removing all installed printers
   shell: lpadmin -x {{ item }}

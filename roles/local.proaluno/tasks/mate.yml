@@ -75,6 +75,12 @@
     dest: /etc/default/keyboard
     mode: '0644'
 
+- name: Copy welcome
+  copy:
+    src: files/welcome.sh
+    dest: /proaluno/welcome.sh
+    mode: '0755'
+
 - name: Copy countdown.sh
   template:
     src: templates/countdown.sh

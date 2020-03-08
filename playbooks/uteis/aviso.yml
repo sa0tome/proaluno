@@ -1,0 +1,20 @@
+---
+- name: reboot
+  hosts: vm
+  become: yes
+
+  vars:
+    mensagem: "Teste"
+# ssh 5385361@192.168.8.202 "zenity --warning --width=500 --no-wrap --text='Your $VPN is not connected. Please connect it or inform to engineer' --display=:0"
+
+  tasks:
+
+    - name: Aviso Template
+      template:
+        src: ../../roles/local.proaluno/templates/aviso.sh
+        dest: '/proaluno/aviso.sh'
+        mode: '0755'
+
+    - name: zenity
+      shell: "/proaluno/aviso.sh"
+

@@ -1,6 +1,6 @@
 ---
 - name: reboot
-  hosts: all
+  hosts: vm
   become: yes
 
   tasks:

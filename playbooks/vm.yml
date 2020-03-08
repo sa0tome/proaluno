@@ -33,7 +33,6 @@
         device: "{{cups_server}}/simplex"
         model: 'K7600_processado_simplex.ppd'
 
-
     proaluno_check_quota: "http://quota.local.fflch.usp.br/"
 
   tasks:
