@@ -46,17 +46,35 @@
     - K7600_processado_duplex.ppd
     - K7600_processado_duplex_borda_menor.ppd
 
-#### remover todas impressoras antes de instalar a nova
+#### remover impressoras antes de instalar a nova
 # for i in $(lpstat -p | awk '{print $2}'); do lpadmin -x $i; done
+- name: Initialize an empty list for our printer_to_keep
+  set_fact:
+    printers_to_keep: []
+
+- name: Append string to list
+  set_fact:
+    printers_to_keep: "{{ printers_to_keep + [item.name] }}"
+  loop: "{{ cups_printers }}"
+
 - name: getting installed printers
   shell: lpstat -p | awk '{print $2}'
-  register: installed_printers
+  register: installed_printer
 
-- name: removing installed printers
+- name: removing all installed printers
   shell: lpadmin -x {{ item }}
-  with_items: "{{ installed_printers.stdout_lines }}"
-  when: proaluno_remove_printers
+  loop: "{{ installed_printers.stdout_lines }}"
+  when: proaluno_remove_all_printers
   ignore_errors: True
+
+- name: removing older printers
+  shell: lpadmin -x {{ item }}
+  loop: "{{ installed_printers.stdout_lines }}"
+  when: 
+    - item not in printers_to_keep
+    - not proaluno_remove_all_printers
+  ignore_errors: True
+
 
 #### Exemplo de instalação de uma impressora
 # lpadmin -p nome_impressora 

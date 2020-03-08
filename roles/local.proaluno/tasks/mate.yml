@@ -76,19 +76,19 @@
     mode: '0644'
 
 - name: Copy countdown.sh
-  copy:
-    src: files/countdown.sh
+  template:
+    src: templates/countdown.sh
     dest: /proaluno/countdown.sh
     mode: '0755'
     
 - name: Copy check_quotas.sh
-  copy:
-    src: files/check_quotas.sh
+  template:
+    src: templates/check_quota.sh
     dest: /proaluno/check_quotas.sh
     mode: '0755'
-    
+
 - name: Copy quotas.desktop
-  copy:
-    src: files/quotas.desktop
+  template:
+    src: templates/quotas.desktop
     dest: '/etc/skel/Área de trabalho/quotas.desktop'
     mode: '0755'
