@@ -1,7 +1,7 @@
 [Desktop Entry]
 Type=Application
 Terminal=false
-Exec=xterm -title "Quotas" -fa 'Noto Mono' -fs 16 -geometry 70x16 -e /proaluno/check_quota.sh
+Exec=xterm -title "Quotas" -fa 'Noto Mono' -fs 16 -geometry 70x16 -e /proaluno/check_quotas.sh
 Name=Veja suas quotas
 Comment=quotas
 Icon=/usr/share/icons/Adwaita/256x256/actions/document-print.png

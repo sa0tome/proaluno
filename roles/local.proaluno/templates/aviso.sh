@@ -1,10 +1,13 @@
 #!/bin/sh
 
-su 5385361
+export LANG=C
+export XAUTHORITY=/home/{{ logado }}/.Xauthority
+export DISPLAY=:0
 
-DISPLAY=:0 zenity --warning --no-wrap --text \
+
+su -c "zenity --warning --no-wrap --text \
 '
-<span size="x-large" weight="bold">
+<span size=\"x-large\" weight=\"bold\">
     Aviso
 </span>
 
@@ -12,4 +15,4 @@ DISPLAY=:0 zenity --warning --no-wrap --text \
     {{mensagem}}
 </span>
 '
-&
+" {{ logado }}

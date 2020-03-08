@@ -8,6 +8,7 @@
     - foomatic-db-engine
     - hp-ppd
     - openprinting-ppds
+    - cups-tea4cups
 
 - name: Create a directory /usr/lib/cups/filter
   file:
@@ -81,6 +82,7 @@
 #    -v ipp://cups.fflch.usp.br:631/printers/let_samsung_pb_k7500lx_proaluno 
 #    -m K7600.ppd -o printer-error-policy=abort-job 
 #    -o sides=two-sided-long-edge -E
+#    -v tea4cups:{{ item.device }}
 - name: Install printers
   shell: >
     /usr/sbin/lpadmin -p {{ item.name }}
@@ -111,3 +113,17 @@
     name: "avahi-daemon"
     state: absent
     purge: yes
+
+- name: Copy dialog_tea4cups.sh
+  template:
+    src: templates/dialog_tea4cups.sh
+    dest: '/proaluno/dialog_tea4cups.sh'
+    mode: '0755'
+
+- name: pre hook cups to open dialog
+  lineinfile:
+    path: '/etc/cups/tea4cups.conf'
+    regexp: '^prehook_open_check_quotas'
+    state: present
+    create: yes
+    line: 'prehook_open_check_quotas : /proaluno/dialog_tea4cups.sh'

@@ -1,6 +1,6 @@
 #!/bin/sh
 
-MAX_LOGON_TIME=120
+MAX_LOGON_TIME={{proaluno_max_logon_time}}
 ALERT_WHEN_REMAINING=5
 
 # Let's be nice :)
@@ -49,7 +49,7 @@ alert()
 {
 zenity --warning --no-wrap --text \
 '<span size="x-large" weight="bold">
-     Seu tempo está acabando!     
+     Seu tempo está acabando, restam 5 minutos!     
 
      Lembre-se que seus dados     
      são apagados no logout!     

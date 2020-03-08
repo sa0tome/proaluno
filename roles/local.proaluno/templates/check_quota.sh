@@ -22,7 +22,7 @@ abort()
 # Conecta ao servidor da FFLCH para pegar quantas quotas o aluno tem.
 pega_quotas()
 {
-	local quotas=$(expr 30 - $(wget -q -O- https://quotas.fflch.usp.br/pages/today/$(whoami)))
+	local quotas=$(expr 30 - $(wget -q -O- {{proaluno_check_quota}}/pages/today/$(whoami)))
 	if [ -z "$quotas" ]; then
 		return 1
 	fi

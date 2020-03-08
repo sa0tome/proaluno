@@ -10,30 +10,20 @@
     cups_printers:
 
       - name: frente_e_verso_borda_maior
-        device: "{{cups_server}}/duplex"
-        model: 'K7600_direto_duplex.ppd'
-
-      - name: frente_e_verso_borda_menor
-        device: "{{cups_server}}/duplex_borda_menor"
-        model: 'K7600_direto_duplex_borda_menor.ppd'
-
-      - name: somente_frente
-        device: "{{cups_server}}/simplex"
-        model: 'K7600_direto_simplex.ppd'
-
-      - name: lento_frente_e_verso_borda_maior
-        device: "{{cups_server}}/duplex"
+        device: "{{cups_server}}/proaluno_letras_duplex"
         model: 'K7600_processado_duplex.ppd'
 
-      - name: lento_frente_e_verso_borda_menor
-        device: "{{cups_server}}/duplex_borda_menor"
+      - name: frente_e_verso_borda_menor
+        device: "{{cups_server}}/proaluno_letras_duplex_borda_menor"
         model: 'K7600_processado_duplex_borda_menor.ppd'
 
-      - name: lento_somente_frente
-        device: "{{cups_server}}/simplex"
+      - name: somente_frente
+        device: "{{cups_server}}/proaluno_letras_simplex"
         model: 'K7600_processado_simplex.ppd'
 
-    proaluno_check_quota: "http://quota.local.fflch.usp.br/"
+      - name: openprint
+        device: "{{cups_server}}/let_samsung_pb_k7500lx_proaluno"
+        model: 'openprinting-ppds:0/ppd/openprinting/Samsung/PS/Samsung_K7600_Series.ppd'
 
   tasks:
 
@@ -41,6 +31,7 @@
       include_role:
         name: local.proaluno
       vars:
+        proaluno_check_quota: "http://quotas.local.fflch.usp.br/"
         proaluno_deploy_printers: True
         proaluno_install_pacotes_debian: False
         proaluno_install_mate: True

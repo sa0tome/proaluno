@@ -11,25 +11,13 @@
 
       - name: frente_e_verso_borda_maior
         device: "{{cups_server}}/{{sala}}duplex"
-        model: 'K7600_direto_duplex.ppd'
+        model: 'K7600_processado_duplex.ppd'
 
       - name: frente_e_verso_borda_menor
         device: "{{cups_server}}/{{sala}}duplex_borda_menor"
-        model: 'K7600_direto_duplex_borda_menor.ppd'
-
-      - name: somente_frente
-        device: "{{cups_server}}/{{sala}}simplex"
-        model: 'K7600_direto_simplex.ppd'
-
-      - name: lento_frente_e_verso_borda_maior
-        device: "{{cups_server}}/{{sala}}duplex"
-        model: 'K7600_processado_duplex.ppd'
-
-      - name: lento_frente_e_verso_borda_menor
-        device: "{{cups_server}}/{{sala}}duplex_borda_menor"
         model: 'K7600_processado_duplex_borda_menor.ppd'
 
-      - name: lento_somente_frente
+      - name: somente_frente
         device: "{{cups_server}}/{{sala}}simplex"
         model: 'K7600_processado_simplex.ppd'
 
@@ -39,6 +27,7 @@
       include_role:
         name: local.proaluno
       vars:
+        proaluno_check_quota: "https://quotas.fflch.usp.br/"
         proaluno_deploy_printers: True
         proaluno_install_pacotes_debian: True
         proaluno_install_mate: True

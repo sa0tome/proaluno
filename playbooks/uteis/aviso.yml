@@ -4,10 +4,16 @@
   become: yes
 
   vars:
-    mensagem: "Teste"
-# ssh 5385361@192.168.8.202 "zenity --warning --width=500 --no-wrap --text='Your $VPN is not connected. Please connect it or inform to engineer' --display=:0"
+    mensagem: "A sala próaluno entrará em manutenção às 10:00 e todos computadores serão automaticamente desligados"
 
   tasks:
+    - name: registra usuário logado
+      shell: >
+        ls /home/ | grep -v vagrant
+      register: logados_lista
+
+    - set_fact:
+        logado: "{{logados_lista.stdout_lines.0}}"
 
     - name: Aviso Template
       template:
@@ -15,6 +21,6 @@
         dest: '/proaluno/aviso.sh'
         mode: '0755'
 
-    - name: zenity
-      shell: "/proaluno/aviso.sh"
+    - name: mostra mensagem
+      shell: "/proaluno/aviso.sh &"
 
